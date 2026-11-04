@@ -27,7 +27,7 @@
 - [x] Add lightweight hash routing.
 - [x] Add initial unit tests.
 - [x] Add GitHub Actions CI workflow.
-- [ ] Install dependencies and generate lockfile.
+- [ ] Install dependencies and generate lockfile. (See `docs/verification/M1-VERIFICATION.md`.)
 - [ ] Run lint, typecheck, tests, and production build.
 - [ ] Verify desktop and mobile behavior.
 - [ ] Open pull request and obtain acceptance.
