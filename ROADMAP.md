@@ -28,7 +28,7 @@
 
 ## Milestone 2 — Core generators
 
-Preparation reference: [`docs/milestones/M2-QR-STUDIO-PLAN.md`](docs/milestones/M2-QR-STUDIO-PLAN.md) — scope, library evaluation, technical boundaries, tests, and acceptance criteria.
+Preparation reference: [`docs/planning/M2-QR-STUDIO-TECHNICAL-PLAN.md`](docs/milestones/M2-QR-STUDIO-PLAN.md) — scope, library evaluation, technical boundaries, tests, and acceptance criteria.
 
 - [ ] QR Generator (URL and text).
 - [ ] vCard Generator and `.vcf` export.
