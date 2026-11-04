@@ -132,7 +132,6 @@ function renderHome(): void {
     });
   });
 
-  document.addEventListener("keydown", handleSearchShortcut, { once: true });
 }
 
 function renderToolDetail(toolId: string): void {
@@ -187,5 +186,6 @@ function render(): void {
   else renderNotFound();
 }
 
+document.addEventListener("keydown", handleSearchShortcut);
 window.addEventListener("hashchange", render);
 render();
