@@ -1,13 +1,5 @@
 import type { BusinessCardData } from "./types";
 
-const accents: Record<BusinessCardData["accent"], string> = {
-  violet: "#635bdb",
-  blue: "#3277d5",
-  teal: "#168b83",
-  rose: "#cf5578",
-  amber: "#c1842d",
-};
-
 function roundedRect(
   context: CanvasRenderingContext2D,
   x: number,
@@ -42,7 +34,7 @@ export function drawBusinessCard(
   width = 1200,
   height = 675,
 ): void {
-  const accent = accents[data.accent];
+  const accent = data.accent;
   const dark = data.theme === "dark";
   const background = dark ? "#171923" : "#ffffff";
   const foreground = dark ? "#f5f6fa" : "#20252d";
