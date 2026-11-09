@@ -38,9 +38,9 @@ This checklist selects security topics relevant to Qraft's current static, brows
 
 | ID | Requirement | Verification | Status / evidence |
 |---|---|---|---|
-| WEB-01 | Production deployment must use HTTPS. | Inspect deployed origin and redirects. | Not assessed — production host not supplied. |
-| WEB-02 | Configure a restrictive CSP compatible with the production build. | Inspect response headers and test enforced policy. | Not assessed — production host/configuration not reviewed. |
-| WEB-03 | Configure appropriate browser security headers. | Verify HSTS, nosniff, Referrer-Policy, and least-privilege Permissions-Policy. | Not assessed — production host/configuration not reviewed. |
+| WEB-01 | Production deployment must use HTTPS. | Inspect deployed origin and redirects. | Not assessed — production host not deployed. |
+| WEB-02 | Configure a restrictive CSP compatible with the production build. | Inspect response headers and test enforced policy. | Configured for Cloudflare Pages in `public/_headers`; enforcement and compatibility not yet tested on a Pages preview. |
+| WEB-03 | Configure appropriate browser security headers. | Verify HSTS, nosniff, Referrer-Policy, and least-privilege Permissions-Policy. | Configured in `public/_headers`; actual response headers and HTTPS behavior remain unverified until preview deployment. |
 | WEB-04 | Avoid unnecessary browser permissions. | Review permission use and prompts. | Partial — current tools do not request camera permission; full browser permission review remains. |
 | WEB-05 | Handle Blob/object URLs and downloads safely. | Verify lifecycle, filenames, content types, and cleanup. | Partial — vCard download revokes its object URL; QR uses generated PNG data URLs. Browser download behavior and lifecycle checks remain. |
 
@@ -85,7 +85,7 @@ Before public v1.0 release:
 - Resolve Critical and High dependency findings, or document a justified, time-bounded exception with compensating controls.
 - Remediate or explicitly accept the remaining 7 moderate development dependency findings after reviewing exact advisory IDs and reachability.
 - Complete broader malformed-input tests, vCard import compatibility, and independent QR scanner checks for every shipped tool.
-- Verify HTTPS and response headers on the actual production host.
+- Verify HTTPS and response headers on the actual Cloudflare Pages preview/production host.
 - Verify repository-level security settings and required CI check enforcement.
 - Reassess the threat model if persistence, network calls, uploads, accounts, or hosted profiles are introduced.
 
