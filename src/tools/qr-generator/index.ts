@@ -41,18 +41,22 @@ export function renderQrGenerator(container: HTMLElement): void {
     '</main>',
   ].join("");
 
-  const contentType = container.querySelector<HTMLSelectElement>("#qr-content-type");
-  const input = container.querySelector<HTMLTextAreaElement>("#qr-input");
-  const inputHint = container.querySelector<HTMLParagraphElement>("#qr-input-hint");
-  const feedback = container.querySelector<HTMLParagraphElement>("#qr-feedback");
-  const previewEmpty = container.querySelector<HTMLParagraphElement>("#qr-preview-empty");
-  const previewImage = container.querySelector<HTMLImageElement>("#qr-preview-image");
-  const clearButton = container.querySelector<HTMLButtonElement>("#qr-clear");
-  const downloadButton = container.querySelector<HTMLButtonElement>("#qr-download");
-
-  if (!contentType || !input || !inputHint || !feedback || !previewEmpty || !previewImage || !clearButton || !downloadButton) {
-    throw new Error("QR Generator controls could not be initialized.");
+  function requireControl<T extends HTMLElement>(selector: string): T {
+    const control = container.querySelector<T>(selector);
+    if (!control) {
+      throw new Error("QR Generator control could not be initialized: " + selector);
+    }
+    return control;
   }
+
+  const contentType = requireControl<HTMLSelectElement>("#qr-content-type");
+  const input = requireControl<HTMLTextAreaElement>("#qr-input");
+  const inputHint = requireControl<HTMLParagraphElement>("#qr-input-hint");
+  const feedback = requireControl<HTMLParagraphElement>("#qr-feedback");
+  const previewEmpty = requireControl<HTMLParagraphElement>("#qr-preview-empty");
+  const previewImage = requireControl<HTMLImageElement>("#qr-preview-image");
+  const clearButton = requireControl<HTMLButtonElement>("#qr-clear");
+  const downloadButton = requireControl<HTMLButtonElement>("#qr-download");
 
   let generationId = 0;
   let currentDataUrl = "";
