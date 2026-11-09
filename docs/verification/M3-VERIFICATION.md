@@ -37,6 +37,9 @@ Expected results:
 - [ ] Preview updates as valid contact details are entered.
 - [ ] Copy vCard copies the exact preview text.
 - [ ] Download VCF creates `contact.vcf`.
+- [ ] A QR code is generated from the exact vCard preview text.
+- [ ] Download QR PNG creates `contact-qr.png` and scans to the complete vCard payload.
+- [ ] An oversized contact reports QR capacity feedback while VCF download remains available.
 - [ ] Clear resets all fields, preview, and action states.
 - [ ] Invalid input preserves the values already entered.
 
@@ -63,7 +66,7 @@ Use synthetic contact details only.
 ## 5. Privacy check
 
 - [ ] Enter synthetic contact details with DevTools Network open.
-- [ ] Confirm contact data is not sent to an application backend or third-party service.
+- [ ] Confirm contact data is not sent to an application backend or third-party service during VCF or QR generation.
 - [ ] Confirm contact data is not automatically written to localStorage or IndexedDB.
 - [ ] Confirm Clear removes in-memory form and preview data.
 
