@@ -2,6 +2,7 @@ import { findTool, searchTools, categories, tools } from "./app/tool-registry";
 import { resolveRoute } from "./app/router";
 import { renderQrGenerator } from "./tools/qr-generator";
 import { renderVCardGenerator } from "./tools/vcard-generator";
+import { renderBusinessCard } from "./tools/business-card";
 import "./styles.css";
 
 function getAppRoot(): HTMLDivElement {
@@ -157,6 +158,11 @@ function renderToolDetail(toolId: string): void {
 
   if (tool.id === "vcard-generator" && tool.status === "available") {
     renderVCardGenerator(app);
+    return;
+  }
+
+  if (tool.id === "business-card" && tool.status === "available") {
+    renderBusinessCard(app);
     return;
   }
 
