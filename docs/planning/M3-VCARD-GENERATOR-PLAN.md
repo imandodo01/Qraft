@@ -1,8 +1,8 @@
 # M3 — vCard Generator: Minimum v1.0 Plan
 
 **Target:** Qraft v1.0  
-**Implementation branch after M2 acceptance:** `feature/m3-vcard-generator`  
-**Status:** Prepared; blocked until prior milestones are accepted.
+**Implementation branch:** `feature/m3-vcard-generator`  
+**Status:** Implementation in progress.
 
 ## 1. Goal
 
@@ -25,11 +25,12 @@ No account, backend, or remote processing is required.
 - Postal address is deferred unless the UI remains simple and interoperability tests are available.
 
 ### Required behavior
-- Live or explicit preview of the generated vCard text.
+- Live preview of the generated vCard text.
 - Download as `contact.vcf`.
 - Copy vCard text.
 - Clear/reset form.
-- Validation for required name and malformed website URLs.
+- Validation for required name, malformed email values, and malformed website URLs.
+- Reject control characters in single-line email and phone values to prevent property injection.
 - Preserve entered data when validation or export fails.
 - No automatic persistence of personal contact data.
 
@@ -40,10 +41,10 @@ Use **vCard 3.0** as the initial export format for broad practical compatibility
 The serializer must:
 - Emit `BEGIN:VCARD` and `END:VCARD`.
 - Include `VERSION:3.0`.
-- Include `FN` and `N`.
+- Include `FN` and structured `N`.
 - Use CRLF line endings.
 - Escape backslashes, commas, semicolons, and newlines in text values.
-- Fold long content lines according to the vCard line-folding rules (75 octets, not 75 JavaScript characters); do not split a UTF-8 multibyte sequence.
+- Fold long content lines at 75 octets, not 75 JavaScript characters; do not split a UTF-8 multibyte sequence.
 - Encode the downloaded file as UTF-8 with an appropriate vCard MIME type where supported.
 - Avoid emitting empty optional properties.
 
@@ -51,39 +52,37 @@ Reference: [RFC 2426 — vCard 3.0](https://www.rfc-editor.org/rfc/rfc2426).
 
 ## 4. UX minimum
 
-- Single-column form that works on mobile.
+- Single-column form on mobile; form and preview may sit side by side on wider screens.
 - Clear field labels and examples.
 - Preview section showing the serialized vCard.
 - Primary Download VCF action.
 - Secondary Copy vCard action.
+- Clear/reset action.
 - Success/error feedback that does not expose internal exceptions.
 - No design templates or complex styling in this milestone.
 
-## 5. Proposed module boundary
-
-Adapt to the accepted application structure; do not create empty abstractions.
+## 5. Module boundary
 
 ```text
 src/tools/vcard-generator/
   index.ts
-  serializer.ts
+  types.ts
   validation.ts
-  view.ts
-tests/vcard-generator/
-  serializer.test.ts
-  validation.test.ts
+  serializer.ts
+tests/
+  vcard-generator.test.ts
 ```
 
 Keep serialization as a pure function receiving typed contact data and returning a string. Keep DOM and download behavior outside the serializer.
 
 ## 6. Tests and acceptance criteria
 
-- [ ] Missing/blank FN is rejected.
-- [ ] Optional properties are omitted when empty.
-- [ ] Commas, semicolons, backslashes, and newlines are escaped correctly.
-- [ ] Unicode names and organization values remain intact.
-- [ ] Long lines are folded without corrupting UTF-8 characters.
-- [ ] Output has required VCARD envelope and version.
+- [x] Missing/blank FN is rejected.
+- [x] Optional properties are omitted when empty.
+- [x] Commas, semicolons, backslashes, and newlines are escaped correctly.
+- [x] Unicode names and organization values remain intact.
+- [x] Long lines are folded without corrupting UTF-8 characters.
+- [x] Output has required VCARD envelope and version.
 - [ ] Downloaded `.vcf` opens/imports in at least two available contact applications or independent vCard validators.
 - [ ] Copy action copies the exact preview text.
 - [ ] Invalid website URL receives useful feedback.
