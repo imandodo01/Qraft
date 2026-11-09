@@ -16,7 +16,7 @@
 ## M1 — Application foundation
 
 **Branch:** `feature/m1-foundation`  
-**Status:** Draft PR #1; awaiting local verification.
+**Status:** Completed; PR #1 merged into `main`.
 
 - [x] Vite + TypeScript foundation.
 - [x] Strict TypeScript, Vitest, and ESLint configuration.
@@ -24,19 +24,19 @@
 - [x] Tool registry, search, and category filtering.
 - [x] Basic hash routing.
 - [x] Initial unit tests and GitHub Actions workflow.
-- [ ] Commit lockfile after local dependency installation.
-- [ ] Local lint, typecheck, tests, and production build.
-- [ ] Manual desktop/mobile and navigation checks.
-- [ ] Accept and merge PR #1.
+- [x] Commit lockfile after local dependency installation.
+- [x] Local lint, typecheck, tests, and production build.
+- [x] Manual desktop/mobile and navigation checks.
+- [x] Accept and merge PR #1.
 
-Verification: [M1 verification guide](../blob/feature/m1-foundation/docs/verification/M1-VERIFICATION.md).
+Verification record: [M1 verification guide](docs/verification/M1-VERIFICATION.md).
 
 **Exit criteria:** The application foundation builds and passes its local and CI acceptance checks.
 
 ## M2 — QR Studio
 
 **Preparation:** [M2 QR Studio technical plan](planning/M2-QR-STUDIO-TECHNICAL-PLAN.md)  
-**Implementation branch after M1:** `feature/m2-qr-studio`
+**Implementation:** PR #4 on `feature/m2-qr-studio`; acceptance pending.
 
 - [ ] Generate QR codes from URL and plain text.
 - [ ] Local browser-side generation and live preview.
