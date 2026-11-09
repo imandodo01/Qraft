@@ -1,12 +1,18 @@
 import { findTool, searchTools, categories } from "./app/tool-registry";
-import { navigate, resolveRoute } from "./app/router";
+import { resolveRoute } from "./app/router";
 import "./styles.css";
 
-const app = document.querySelector<HTMLDivElement>("#app");
+function getAppRoot(): HTMLDivElement {
+  const root = document.querySelector<HTMLDivElement>("#app");
 
-if (!app) {
-  throw new Error("Qraft application root element was not found.");
+  if (!root) {
+    throw new Error("Qraft application root was not found.");
+  }
+
+  return root;
 }
+
+const app = getAppRoot();
 
 let activeCategory = "";
 
@@ -119,7 +125,7 @@ function renderHome(): void {
 
   const searchInput = app.querySelector<HTMLInputElement>("#tool-search");
   searchInput?.addEventListener("input", () => {
-    const grid = app?.querySelector<HTMLDivElement>("#tool-grid");
+    const grid = app.querySelector<HTMLDivElement>("#tool-grid");
     if (grid) grid.innerHTML = renderToolCards(searchInput.value);
   });
 
@@ -127,11 +133,10 @@ function renderHome(): void {
     button.addEventListener("click", () => {
       activeCategory = button.dataset.category ?? "";
       renderHome();
-      const input = app?.querySelector<HTMLInputElement>("#tool-search");
+      const input = app.querySelector<HTMLInputElement>("#tool-search");
       input?.focus();
     });
   });
-
 }
 
 function renderToolDetail(toolId: string): void {
@@ -176,7 +181,7 @@ function handleSearchShortcut(event: KeyboardEvent): void {
   if (target instanceof HTMLElement && ["INPUT", "TEXTAREA"].includes(target.tagName)) return;
 
   event.preventDefault();
-  app?.querySelector<HTMLInputElement>("#tool-search")?.focus();
+  app.querySelector<HTMLInputElement>("#tool-search")?.focus();
 }
 
 function render(): void {
