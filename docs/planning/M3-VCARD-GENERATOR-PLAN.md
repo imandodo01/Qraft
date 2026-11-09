@@ -21,7 +21,7 @@ No account, backend, or remote processing is required.
 - Job title.
 - Email.
 - Phone number.
-- Website (HTTP/HTTPS only).
+- Website (HTTP/HTTPS only); bare domains and URLs default to HTTPS, while an explicitly entered HTTP URL is preserved.
 - Postal address is deferred unless the UI remains simple and interoperability tests are available.
 
 ### Required behavior
@@ -31,7 +31,7 @@ No account, backend, or remote processing is required.
 - Clear/reset form.
 - Generate a QR code from the exact serialized vCard payload and download it as PNG.
 - Keep VCF export available when the contact payload exceeds QR capacity; never truncate contact data.
-- Validation for required name, malformed email values, and malformed website URLs.
+- Validation for required name, malformed email values, and malformed website URLs; normalize bare website domains to HTTPS before preview and export.
 - Reject control characters in single-line email and phone values to prevent property injection.
 - Preserve entered data when validation or export fails.
 - No automatic persistence of personal contact data.
