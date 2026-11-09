@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { escapeVCardText, foldVCardLine, serializeVCard } from "../src/tools/vcard-generator/serializer";
 import { validateVCardContact } from "../src/tools/vcard-generator/validation";
 import { createEmptyContact } from "../src/tools/vcard-generator/types";
+import { generateQrPng, QrGenerationError } from "../src/tools/qr-generator/qr-service";
 
 describe("validateVCardContact", () => {
   it("requires a formatted name", () => {
@@ -113,5 +114,28 @@ describe("serializeVCard", () => {
 
   it("rejects serialization when the required name is missing", () => {
     expect(() => serializeVCard(createEmptyContact())).toThrow(/name/i);
+  });
+});
+
+
+describe("vCard QR sharing", () => {
+  it("encodes the exact serialized vCard as a PNG QR code", async () => {
+    const contact = {
+      ...createEmptyContact(),
+      formattedName: "Ada Lovelace",
+      givenName: "Ada",
+      familyName: "Lovelace",
+      email: "ada@example.com",
+    };
+    const vCard = serializeVCard(contact);
+    await expect(generateQrPng(vCard)).resolves.toMatch(/^data:image\\/png;base64,/);
+  });
+
+  it("does not truncate a vCard that exceeds QR capacity", async () => {
+    const contact = {
+      ...createEmptyContact(),
+      formattedName: "A".repeat(5000),
+    };
+    await expect(generateQrPng(serializeVCard(contact))).rejects.toBeInstanceOf(QrGenerationError);
   });
 });
