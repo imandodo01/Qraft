@@ -67,7 +67,7 @@ export function serializeVCard(contact: VCardContact): string {
   }
 
   if (isPresent(contact.email)) {
-    lines.push(`EMAIL;TYPE=INTERNET:${contact.email}`);
+    lines.push(`EMAIL;TYPE=INTERNET:${escapeVCardText(contact.email)}`);
   }
 
   if (isPresent(contact.phone)) {
