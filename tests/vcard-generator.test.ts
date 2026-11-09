@@ -101,6 +101,16 @@ describe("serializeVCard", () => {
     expect(output).toContain("URL:https://example.com");
   });
 
+  it("folds long serialized properties within the 75-octet limit", () => {
+    const longName = "é".repeat(80);
+    const contact = { ...createEmptyContact(), formattedName: longName };
+    const output = serializeVCard(contact);
+    const physicalLines = output.split("\\r\\n").filter(Boolean);
+
+    expect(physicalLines.every((line) => new TextEncoder().encode(line).length <= 75)).toBe(true);
+    expect(output.replace(/\\r\\n /g, "")).toContain(`FN:${longName}`);
+  });
+
   it("rejects serialization when the required name is missing", () => {
     expect(() => serializeVCard(createEmptyContact())).toThrow(/name/i);
   });
