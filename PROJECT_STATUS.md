@@ -1,104 +1,64 @@
 # Qraft — Project Status
 
 **Current release target:** v1.0  
-**Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card  
-**Active work:** M5 Developer and Text Tools  
-**Active branch:** `feature/m5-developer-text-tools`
+**Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card, M5 Developer and Text Tools  
+**Active work:** M6 Integration and Release Hardening  
+**Active branch:** `feature/m6-release-hardening`
 
 ## Accepted baseline
 
-- Product vision, principles, and nine-tool v1.0 scope documented.
-- Client-side TypeScript + Vite architecture selected.
-- Design direction and privacy principles documented.
-- Milestone-based branch, PR, and acceptance workflow established.
+- Nine-tool v1.0 scope and client-side TypeScript + Vite architecture are established.
+- No account, backend, hosted public profile, or automatic contact-data persistence is required for v1.0.
+- Milestone-based branch, PR, and acceptance workflow is established.
 
 ## Completed milestones
 
-### M1 — Application Foundation
+| Milestone | Outcome | Merge |
+|---|---|---|
+| M1 — Application Foundation | Vite, strict TypeScript, ESLint, Vitest, responsive shell, tool registry, search, routing, CI | PR #1 |
+| M2 — QR Studio | Local URL/text QR generation, preview, validation, PNG export, independent scanner verification | PR #4 |
+| M3 — Contact Studio | vCard 3.0 validation/serialization, preview, copy, VCF export, QR contact sharing | PR #5 |
+| M4 — Digital Business Card | Responsive card, themes/accent, 1200 × 675 PNG, VCF, embedded contact QR | PR #7 |
+| M5 — Developer and Text Tools | JSON, UTF-8 Base64, URI component, UUID v4, text counter, case converter | PR #8 |
 
-- [x] Vite + strict TypeScript foundation.
-- [x] ESLint and Vitest configuration.
-- [x] Responsive application shell and initial visual system.
-- [x] Typed tool registry, category filtering, and search.
-- [x] Lightweight hash routing and not-found state.
-- [x] Initial automated tests and GitHub Actions CI.
-- [x] Lockfile committed.
-- [x] Local automated checks and manual acceptance completed.
-- [x] PR #1 merged into `main`.
+M3, M4, and M5 were merged into `main` on 2026-11-09. M4 and M5 were squash-merged. See each [verification guide](docs/verification/) for the recorded evidence and limits. Completion of a milestone does not imply unrecorded cross-browser, security, or deployment tests.
 
-Verification: [M1 verification guide](docs/verification/M1-VERIFICATION.md).
-
-### M2 — QR Studio
-
-- [x] URL and plain-text validation.
-- [x] Local QR generation and live preview using `qrcode`.
-- [x] PNG download, clear action, and capacity feedback.
-- [x] Automated validation and QR service tests.
-- [x] Dependency lockfile committed.
-- [x] CI lint, typecheck, tests, and production build passed.
-- [x] User local lint, typecheck, tests, and production build passed.
-- [x] User manual functional, scanner, responsive, keyboard, and privacy checks passed.
-- [x] PR #4 merged into `main`.
-
-Verification: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
-
-### M3 — Contact Studio: vCard Generator
-
-- [x] Typed contact data and validation.
-- [x] vCard 3.0 serializer with escaping and UTF-8 line folding.
-- [x] Live preview, copy, VCF download, and clear interactions.
-- [x] Website URL normalization and validation.
-- [x] QR preview and PNG export from the exact serialized vCard payload.
-- [x] Automated tests for validation, serialization, and QR generation/capacity behavior.
-- [x] User confirmed behavior met expectations and QR generation worked.
-- [x] PR #5 merged into `main` on 2026-11-09.
-
-Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.md). Detailed per-environment evidence remains subject to the recorded checklist; do not infer unreported import, browser, or security tests.
-
-## Security Baseline
+## Security baseline
 
 - [x] Security policy, threat model, and verification checklist added.
 - [x] Lockfile consistency and clean install recorded.
-- [x] Focused maintainer-reported XSS, network, and browser-storage checks recorded.
-- [ ] Remaining dependency and production-hosting security work is tracked for release hardening.
+- [x] Focused maintainer-reported XSS, network, and browser-storage checks recorded for tested QR/vCard flows.
+- [ ] Remaining dependency advisories reviewed and disposition recorded.
+- [ ] Production HTTPS and response headers verified on the selected host.
+- [ ] Repository-level security settings verified where access permits.
 
-## Completed — M4 Digital Business Card
+The previous maintainer-reported audit recorded zero production findings and seven moderate development dependency findings through the TypeScript ESLint dependency path. Re-run the audit during M6; do not assume the old result is current.
 
-- [x] One responsive landscape card layout with live preview.
-- [x] Light/dark theme and user-selected HEX accent color.
-- [x] Browser-native Canvas PNG export at 1200 × 675.
-- [x] VCF download and contact QR reuse existing M2/M3 services.
-- [x] QR capacity fallback preserves VCF and PNG export.
-- [x] Automated checks passed and user accepted the implementation.
-- [x] PR #7 squash-merged into `main` on 2026-11-09.
+## Active — M6 Integration and Release Hardening
 
-Verification: [M4 verification checklist](docs/verification/M4-VERIFICATION.md). The checklist remains the reference for detailed browser evidence; acceptance does not imply unrecorded cross-browser certification. Hosted profiles and backend functionality remain out of scope.
+- [ ] Full regression across all nine tools and shared navigation.
+- [ ] Validate actual QR PNG, VCF, and business-card PNG artifacts.
+- [ ] Cross-browser and mobile acceptance with versions recorded.
+- [ ] Keyboard, semantic accessibility, contrast, and responsive review.
+- [ ] Network, storage, DOM-sink, and dependency security review.
+- [ ] Bundle/performance review.
+- [ ] Reproducible install/build and Node.js version documentation.
+- [ ] Static host selection, deployment, direct-route/refresh, HTTPS, and security-header verification.
+- [ ] Final release documentation and defect triage.
+- [ ] User final acceptance and green CI.
 
-## Active work — M5 Developer and Text Tools
-
-- [x] JSON format/minify/validate logic and UI.
-- [x] UTF-8 Base64 encode/decode logic and UI.
-- [x] URI component encode/decode logic and UI.
-- [x] Secure UUID v4 generation and UI.
-- [x] Live Unicode-aware text counter.
-- [x] Common case conversions.
-- [x] Tool registry and route integration.
-- [x] Initial automated edge-case tests.
-- [ ] Run local lint, typecheck, tests, and production build.
-- [ ] Complete manual clipboard, responsive, keyboard, and privacy checks.
-
-Implementation: `feature/m5-developer-text-tools`.
+Implementation branch: `feature/m6-release-hardening`.  
+Verification checklist: [M6 verification guide](docs/verification/M6-VERIFICATION.md).
 
 ## Deferred ideas
 
-See [Feature Backlog](docs/backlog/FEATURE-BACKLOG.md). Backlog items do not expand the committed v1.0 scope.
+See [Feature Backlog](docs/backlog/FEATURE-BACKLOG.md). Deferred items do not expand the committed v1.0 scope.
 
 ## Workflow
 
-1. Work only within the active milestone on its feature branch.
-2. Run automated checks and inspect the diff.
-3. Open a pull request to `main`.
-4. Perform local and manual verification.
+1. Work only within the active milestone branch.
+2. Run focused and full automated checks; inspect the diff.
+3. Open a PR to `main`.
+4. Complete local and manual verification.
 5. Fix issues on the same branch.
-6. Merge only after explicit acceptance.
-7. Start the next milestone from the updated `main`.
+6. Merge only after explicit user acceptance.
