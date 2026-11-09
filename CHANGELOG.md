@@ -7,14 +7,18 @@ All notable project changes will be documented here.
 ### Added
 - M1 application foundation: Vite, strict TypeScript, ESLint, Vitest, responsive shell, tool discovery, and hash routing.
 - M2 QR Generator: local URL/plain-text QR generation, live preview, validation, and PNG export.
-- M3 Contact Studio: typed vCard 3.0 serialization, preview, copy, VCF download, and QR contact sharing with PNG export (in progress).
+- M3 Contact Studio: typed vCard 3.0 serialization, preview, copy, VCF download, and QR contact sharing with PNG export.
+- Security policy, architecture-based threat model, ASVS-oriented verification checklist, and dependency audit record.
 - Feature backlog for deferred QR Studio and general product ideas.
 
 ### Changed
-- vCard website fields now accept bare domains and default them to HTTPS while preserving explicit HTTP/HTTPS schemes.
-- Tool discovery now reports QR Generator and vCard Generator as available.
-- Roadmap and project status now reflect M2 acceptance and M3 implementation.
+- vCard website fields accept bare domains and default them to HTTPS while preserving explicit HTTP/HTTPS schemes.
+- Tool discovery reports QR Generator and vCard Generator as available.
+- Roadmap and project status reflect M3 acceptance and the pre-M4 Security Baseline.
 
 ### Quality
 - Automated tests cover QR validation/generation and vCard validation/serialization.
 - M2 passed CI and user-reported local/manual acceptance checks.
+- M3 was accepted by the user and PR #5 was merged; detailed per-environment verification evidence remains in the M3 verification guide.
+- Repaired the dependency lockfile and changed CI installation to `npm ci`.
+- Updated Vitest to 5.1.0; local lint, typecheck, and 33 tests passed. Production audit reports zero vulnerabilities; seven moderate minimatch findings remain under review.

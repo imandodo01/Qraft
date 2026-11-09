@@ -1,9 +1,9 @@
 # Qraft — Project Status
 
 **Current release target:** v1.0  
-**Active milestone:** M3 — Contact Studio: vCard Generator  
-**Active branch:** `feature/m3-vcard-generator`  
-**Status:** Implementation in progress
+**Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio  
+**Active work:** Security Baseline before M4  
+**Active branch:** `docs/security-baseline`
 
 ## Accepted baseline
 
@@ -42,23 +42,37 @@ Verification: [M1 verification guide](docs/verification/M1-VERIFICATION.md).
 
 Verification: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
 
-## Active milestone
-
 ### M3 — Contact Studio: vCard Generator
 
-- [x] Create `feature/m3-vcard-generator` from accepted `main`.
-- [x] Implement typed contact data and initial validation.
-- [x] Implement vCard 3.0 serializer with escaping and UTF-8 line folding.
-- [x] Add live preview, copy, download, and clear interactions.
-- [x] Register the tool and connect its route.
-- [x] Add serializer and validation tests.
-- [x] GitHub Actions lint, typecheck, tests, and production build passed.
-- [ ] Run lint, typecheck, tests, and production build locally.
-- [ ] Verify downloaded VCF imports in independent contact applications.
-- [ ] Complete responsive, keyboard, and privacy checks.
-- [ ] Obtain user acceptance and merge the implementation PR.
+- [x] Typed contact data and validation.
+- [x] vCard 3.0 serializer with escaping and UTF-8 line folding.
+- [x] Live preview, copy, VCF download, and clear interactions.
+- [x] Website URL normalization and validation.
+- [x] QR preview and PNG export from the exact serialized vCard payload.
+- [x] Automated tests for validation, serialization, and QR generation/capacity behavior.
+- [x] User confirmed behavior met expectations and QR generation worked.
+- [x] PR #5 merged into `main` on 2026-11-09.
 
-Verification checklist: [M3 verification guide](docs/verification/M3-VERIFICATION.md).
+Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.md). Detailed per-environment evidence remains subject to the recorded checklist; do not infer unreported import, browser, or security tests.
+
+## Active work — Security Baseline
+
+- [x] Add `SECURITY.md` policy and reporting guidance.
+- [x] Add `THREAT-MODEL.md` for the current local-first architecture.
+- [x] Add `SECURITY-VERIFICATION.md` based on relevant ASVS 5.0.0 topics.
+- [x] Add dependency audit inventory and findings.
+- [x] Repair package manifest/lockfile mismatch; local `npm ci` succeeded.
+- [x] Run current npm vulnerability audit; production audit is clean, seven moderate minimatch findings remain under review.
+- [ ] Complete applicable manual security/privacy checks.
+- [ ] Verify production hosting security headers before public release.
+
+See [Security Baseline](SECURITY-VERIFICATION.md) and [Dependency Audit](docs/security/DEPENDENCY-AUDIT.md).
+
+## Next milestone — M4 Digital Business Card
+
+Preparation: [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md).
+
+M4 implementation begins after the Security Baseline exit criteria are met. Keep hosted profiles and backend functionality out of scope.
 
 ## Deferred ideas
 
@@ -66,7 +80,7 @@ See [Feature Backlog](docs/backlog/FEATURE-BACKLOG.md). Backlog items do not exp
 
 ## Workflow
 
-1. Implement only the active milestone on its feature branch.
+1. Work only within the active milestone on its feature branch.
 2. Run automated checks and inspect the diff.
 3. Open a pull request to `main`.
 4. Perform local and manual verification.

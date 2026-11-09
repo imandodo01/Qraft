@@ -5,7 +5,8 @@
 Qraft is a lightweight, browser-based collection of practical tools for creating, converting, inspecting, and sharing digital information. Core tool processing runs locally in your browser; no account or application backend is required for the current v1.0 workflows.
 
 > Project status: v1.0 implementation in progress  
-> Active milestone: M3 — Contact Studio (vCard Generator)
+> Completed: M1 Foundation, M2 QR Studio, M3 Contact Studio  
+> Active work: Security Baseline before M4
 
 ## Product principles
 
@@ -29,7 +30,7 @@ Qraft intentionally avoids a frontend UI framework and does not require a backen
 ## Current tools
 
 - **QR Generator** — URL and plain-text QR generation, live preview, and PNG export.
-- **vCard Generator** — vCard 3.0 preview, VCF export, and QR contact sharing (M3 in progress).
+- **vCard Generator** — vCard 3.0 preview, VCF export, and QR contact sharing.
 
 The remaining v1.0 tools are listed in the [roadmap](ROADMAP.md).
 
@@ -38,7 +39,7 @@ The remaining v1.0 tools are listed in the [roadmap](ROADMAP.md).
 Requirements: Node.js 22.12 or newer and npm.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -60,9 +61,13 @@ npm run build
 - [Development guide](DEVELOPMENT.md)
 - [Testing strategy](TESTING.md)
 - [Privacy principles](PRIVACY.md)
+- [Security policy](SECURITY.md)
+- [Threat model](THREAT-MODEL.md)
+- [Security verification checklist](SECURITY-VERIFICATION.md)
+- [Dependency audit record](docs/security/DEPENDENCY-AUDIT.md)
 - [Feature backlog](docs/backlog/FEATURE-BACKLOG.md)
 - [Changelog](CHANGELOG.md)
 
 ## Definition of done for v1.0
 
-Qraft v1.0 is ready when the committed nine tools work reliably, the application is responsive and accessible, critical flows are tested, privacy behavior is documented, production builds pass, and the application is deployed to a public static host.
+Qraft v1.0 is ready when the committed nine tools work reliably, the application is responsive and accessible, critical flows are tested, privacy behavior is documented, production builds pass, security verification is complete for the applicable scope, and the application is deployed to a public static host.
