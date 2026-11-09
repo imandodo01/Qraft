@@ -1,4 +1,3 @@
-import "./styles.css";
 import { generateQrPng, QrGenerationError } from "./qr-service";
 import { validateQrContent, type QrContentType } from "./validation";
 
