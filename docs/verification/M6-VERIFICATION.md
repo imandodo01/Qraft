@@ -89,12 +89,16 @@ For each exported file, verify it opens/imports and its content matches the prev
 
 ## 6. Static hosting and release documentation
 
-- [ ] Select and document the intended static hosting provider.
-- [ ] Verify deployment output directory and base-path configuration.
-- [ ] Verify direct navigation and refresh for the home route and all tool routes.
-- [ ] Verify 404 behavior and correct MIME types for production assets.
-- [ ] Verify HTTPS redirects and security response headers.
-- [ ] Document deployment, rollback/redeploy, and environment requirements.
+**Selected provider:** Cloudflare Pages. The repository contains a Pages-compatible static build configuration; this does not mean a Cloudflare account has been connected or a deployment has been made.
+
+- [x] Select and document the intended static hosting provider.
+- [x] Document build command (`npm run build`), output directory (`dist`), and Node.js requirement.
+- [ ] Connect the GitHub repository to a Cloudflare Pages preview deployment.
+- [ ] Verify build output, MIME types, and static asset loading.
+- [ ] Verify home and all tool hash routes, browser back/forward, and refresh on the preview deployment.
+- [ ] Verify HTTPS and response headers, including enforced CSP, on the actual preview origin.
+- [ ] Verify custom domain only if one is configured; do not require it for initial preview.
+- [ ] Document production promotion, rollback/redeploy, and environment requirements.
 - [ ] Update README, CHANGELOG, ROADMAP, and PROJECT_STATUS from verified evidence only.
 
 ## 7. Defect triage and release decision
