@@ -2,8 +2,8 @@
 
 **Current release target:** v1.0  
 **Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio  
-**Active work:** Security Baseline before M4  
-**Active branch:** `docs/security-baseline`
+**Active work:** M4 Digital Business Card implementation; local acceptance pending  
+**Active branch:** `feature/m4-business-card`
 
 ## Accepted baseline
 
@@ -55,7 +55,14 @@ Verification: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
 
 Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.md). Detailed per-environment evidence remains subject to the recorded checklist; do not infer unreported import, browser, or security tests.
 
-## Active work — Security Baseline
+## Security Baseline
+
+- [x] Security policy, threat model, and verification checklist added.
+- [x] Lockfile consistency and clean install recorded.
+- [x] Focused maintainer-reported XSS, network, and browser-storage checks recorded.
+- [ ] Remaining dependency and production-hosting security work is tracked for release hardening.
+
+## Active work — M4 Digital Business Card
 
 - [x] Add `SECURITY.md` policy and reporting guidance.
 - [x] Add `THREAT-MODEL.md` for the current local-first architecture.
@@ -72,7 +79,15 @@ See [Security Baseline](SECURITY-VERIFICATION.md) and [Dependency Audit](docs/se
 
 Preparation: [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md).
 
-M4 implementation begins after the Security Baseline exit criteria are met. Keep hosted profiles and backend functionality out of scope.
+- [x] Business-card contact fields, one landscape layout, and live preview.
+- [x] Light/dark theme and five accent choices.
+- [x] Browser-native PNG export at 1200 × 675; no new package dependency.
+- [x] VCF download and QR generation reuse existing vCard and QR services.
+- [x] Validation and vCard mapping automated tests added.
+- [ ] Run local lint, typecheck, test, and production build.
+- [ ] Complete manual PNG, VCF import, QR scanner, responsive, keyboard, and privacy checks.
+
+Verification: [M4 verification checklist](docs/verification/M4-VERIFICATION.md). Hosted profiles and backend functionality remain out of scope.
 
 ## Deferred ideas
 
