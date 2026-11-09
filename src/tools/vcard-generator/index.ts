@@ -60,8 +60,8 @@ export function renderVCardGenerator(container: HTMLElement): void {
 
           <div class="vcard-field">
             <label for="vcard-website">Website</label>
-            <input id="vcard-website" name="website" data-field="website" type="url" autocomplete="url" placeholder="https://example.com" />
-            <p class="vcard-field-hint">Use a complete HTTP or HTTPS address.</p>
+            <input id="vcard-website" name="website" data-field="website" type="url" autocomplete="url" placeholder="example.com" />
+            <p class="vcard-field-hint">Enter a domain or URL. HTTPS is added automatically unless you specify HTTP.</p>
           </div>
 
           <p class="vcard-feedback" id="vcard-feedback" role="status" aria-live="polite"></p>
