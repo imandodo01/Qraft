@@ -206,3 +206,62 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .vcard-qr-image[hidden] { display: none; }
 .vcard-qr-note { margin: 13px 0; color: var(--color-muted); font-size: 10px; line-height: 1.6; }
 .vcard-qr-section .vcard-feedback { margin-bottom: 0; }
+
+
+.business-card-page { max-width: 1180px; }
+.business-card-page .back-link { margin: 42px 0 30px; }
+.business-card-intro { margin-bottom: 30px; }
+.business-card-intro .eyebrow { margin-bottom: 10px; }
+.business-card-intro h1 { margin: 0; font-size: clamp(34px, 5vw, 46px); letter-spacing: -2px; }
+.business-card-intro .detail-description { max-width: 650px; margin-top: 12px; }
+.business-card-workspace { display: grid; grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr); gap: 18px; align-items: start; }
+.business-card-form, .business-card-preview-panel { min-width: 0; padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); box-shadow: var(--shadow-card); }
+.business-card-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.business-card-section-heading h2 { margin: 0; font-size: 15px; letter-spacing: -.3px; }
+.business-card-section-heading span { color: var(--color-muted); font-size: 10px; }
+.business-card-fields { display: grid; gap: 13px; }
+.business-card-field { min-width: 0; }
+.business-card-field label { display: block; margin-bottom: 7px; color: var(--color-text); font-size: 11px; font-weight: 700; }
+ .business-card-field input:not([type="color"]), .business-card-field select { display: block; width: 100%; min-height: 42px; padding: 0 11px; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; color: var(--color-text); font: inherit; font-size: 12px; }
+.business-card-field input[type="color"] { display: block; width: 100%; height: 42px; padding: 4px; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; cursor: pointer; }
+.business-card-field input:focus-visible, .business-card-field select:focus-visible { outline: 3px solid rgb(99 91 219 / 20%); outline-offset: 1px; border-color: var(--color-accent); }
+.business-card-customize { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 17px; }
+.business-card-feedback { min-height: 18px; margin: 12px 0 0; color: var(--color-muted); font-size: 11px; line-height: 1.5; }
+.business-card-feedback[data-state="error"] { color: #b54747; }
+.business-card-feedback[data-state="success"] { color: #28785e; }
+.business-card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+.business-card-button { min-height: 40px; padding: 0 13px; border: 1px solid transparent; border-radius: 8px; font-size: 11px; font-weight: 700; }
+.business-card-button--primary { background: var(--color-accent); color: #fff; }
+.business-card-button--secondary { border-color: var(--color-border); background: #fff; color: var(--color-text); }
+.business-card-button:disabled { cursor: not-allowed; opacity: .45; }
+.business-card-privacy { margin: 17px 0 0; color: var(--color-muted); font-size: 10px; }
+.business-card-privacy:first-letter { color: #43a487; }
+.business-card-preview { position: relative; isolation: isolate; display: flex; min-height: 0; aspect-ratio: 16 / 9; flex-direction: column; justify-content: center; overflow: hidden; padding: clamp(20px, 4vw, 54px); border-radius: 14px; background: #fff; color: #20252d; box-shadow: 0 14px 36px rgb(25 32 48 / 10%); }
+.business-card-preview::before { position: absolute; z-index: -2; inset: 0 auto 0 0; width: 9px; background: var(--card-accent, #635bdb); content: ""; }
+.business-card-preview[data-theme="dark"] { background: #171923; color: #f5f6fa; }
+.business-card-preview__glow { position: absolute; z-index: -1; top: -42%; right: -10%; width: 55%; aspect-ratio: 1; border-radius: 50%; background: var(--card-accent, #635bdb); opacity: .1; }
+.business-card-preview__organization { margin: 0 0 10px; color: var(--card-accent, #635bdb); font-size: clamp(8px, 1vw, 12px); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+.business-card-preview h2 { max-width: 100%; margin: 0; overflow-wrap: anywhere; font-size: clamp(22px, 3.3vw, 42px); letter-spacing: -1.5px; line-height: 1.1; }
+.business-card-preview__job { margin: 9px 0 0; color: var(--card-muted, #737b88); font-size: clamp(11px, 1.5vw, 17px); }
+.business-card-preview[data-theme="dark"] .business-card-preview__job, .business-card-preview[data-theme="dark"] .business-card-preview__tagline { --card-muted: #b6bac7; }
+.business-card-preview__tagline { max-width: 80%; min-height: 1em; margin: 20px 0 0; color: var(--card-muted, #737b88); font-size: clamp(9px, 1.2vw, 14px); line-height: 1.5; }
+.business-card-preview__rule { width: 54px; height: 3px; margin: 23px 0 18px; background: var(--card-accent, #635bdb); }
+.business-card-preview__details { display: flex; flex-wrap: wrap; gap: 8px 18px; color: inherit; font-size: clamp(8px, 1vw, 12px); overflow-wrap: anywhere; }
+.business-card-qr { margin-top: 25px; padding-top: 22px; border-top: 1px solid var(--color-border); }
+.business-card-qr__stage { display: grid; min-height: 190px; place-items: center; padding: 15px; border: 1px dashed var(--color-border); border-radius: 11px; background: #fafbfc; }
+.business-card-qr__stage p { max-width: 230px; margin: 0; color: var(--color-muted); text-align: center; font-size: 11px; line-height: 1.6; }
+.business-card-qr__stage img { display: block; width: min(100%, 220px); height: auto; aspect-ratio: 1; }
+.business-card-qr__stage img[hidden] { display: none; }
+.business-card-qr__note { margin: 12px 0; color: var(--color-muted); font-size: 10px; line-height: 1.6; }
+@media (max-width: 900px) {
+  .business-card-workspace { grid-template-columns: 1fr; }
+  .business-card-preview { max-width: 760px; }
+}
+@media (max-width: 760px) {
+  .business-card-page { padding-right: 20px; padding-left: 20px; }
+  .business-card-page .back-link { margin-top: 34px; }
+  .business-card-form, .business-card-preview-panel { padding: 19px; }
+  .business-card-preview { padding: 22px; }
+  .business-card-preview__tagline { margin-top: 12px; }
+  .business-card-preview__rule { margin: 16px 0 13px; }
+}
