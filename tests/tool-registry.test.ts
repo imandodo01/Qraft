@@ -35,6 +35,7 @@ describe("tool registry", () => {
     expect(tools.filter((tool) => tool.status === "available").map((tool) => tool.id)).toEqual([
       "qr-generator",
       "vcard-generator",
+      "business-card",
     ]);
   });
 
