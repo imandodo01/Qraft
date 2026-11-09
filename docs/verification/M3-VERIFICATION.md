@@ -7,6 +7,9 @@ Run these checks from the repository root after pulling the branch.
 
 ## 1. Automated checks
 
+- [x] GitHub Actions: lint, typecheck, tests, and production build passed (run #73).
+- [ ] Run the same checks locally before acceptance.
+
 ```bash
 npm run lint
 npm run typecheck
