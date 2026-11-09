@@ -13,13 +13,17 @@ describe("validateVCardContact", () => {
     });
   });
 
-  it("accepts a name and optional HTTP or HTTPS website", () => {
-    const contact = { ...createEmptyContact(), formattedName: "Ada Lovelace", website: "https://example.com" };
+  it("accepts bare domains and explicit HTTP or HTTPS website URLs", () => {
+    const contact = { ...createEmptyContact(), formattedName: "Ada Lovelace", website: "example.com" };
     expect(validateVCardContact(contact)).toEqual({ valid: true });
+
+    for (const website of ["http://example.com", "https://example.com/path"]) {
+      expect(validateVCardContact({ ...contact, website })).toEqual({ valid: true });
+    }
   });
 
   it("rejects malformed and unsupported website URLs", () => {
-    for (const website of ["example.com", "https://", "javascript:alert(1)", "https://example.com/a path"]) {
+    for (const website of ["https://", "javascript:alert(1)", "ftp://example.com", "https://example.com/a path"]) {
       const contact = { ...createEmptyContact(), formattedName: "Ada Lovelace", website };
       expect(validateVCardContact(contact)).toMatchObject({ valid: false, field: "website" });
     }
@@ -54,6 +58,14 @@ describe("foldVCardLine", () => {
 });
 
 describe("serializeVCard", () => {
+  it("defaults bare website domains to HTTPS and preserves explicit HTTP", () => {
+    const base = { ...createEmptyContact(), formattedName: "Ada Lovelace" };
+    expect(serializeVCard({ ...base, website: "example.com" })).toContain("URL:https://example.com/\\r\\n");
+    expect(serializeVCard({ ...base, website: "http://example.com/profile" })).toContain("URL:http://example.com/profile\\r\\n");
+    expect(serializeVCard({ ...base, website: "https://example.com" })).toContain("URL:https://example.com/\\r\\n");
+  });
+
+
   it("emits a vCard 3.0 envelope with required FN and N properties", () => {
     const contact = {
       ...createEmptyContact(),
