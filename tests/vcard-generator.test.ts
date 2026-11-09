@@ -48,7 +48,7 @@ describe("foldVCardLine", () => {
     expect(folded.length).toBeGreaterThan(1);
     expect(folded.every((part) => new TextEncoder().encode(part).length <= 75)).toBe(true);
     expect(folded.slice(1).every((part) => part.startsWith(" "))).toBe(true);
-    expect(folded.join("").replace(/^ /gm, "")).toBe(line);
+    expect(folded.map((part, index) => index === 0 ? part : part.slice(1)).join("")).toBe(line);
   });
 });
 
