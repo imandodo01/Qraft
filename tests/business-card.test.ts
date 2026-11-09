@@ -27,7 +27,7 @@ describe("validateBusinessCard", () => {
       email: "ada@example.com",
       website: "example.com",
       theme: "dark" as const,
-      accent: "teal" as const,
+      accent: "#008080",
     };
     expect(validateBusinessCard(data)).toEqual({ valid: true });
   });
