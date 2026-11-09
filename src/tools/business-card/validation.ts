@@ -6,7 +6,7 @@ export type BusinessCardValidation =
   | { valid: false; field: keyof BusinessCardData; message: string };
 
 function hasControlCharacters(value: string): boolean {
-  return /[\\u0000-\\u001f\\u007f]/.test(value);
+  return /[\u0000-\u001f\u007f]/.test(value);
 }
 
 export function validateBusinessCard(data: BusinessCardData): BusinessCardValidation {
@@ -26,7 +26,7 @@ export function validateBusinessCard(data: BusinessCardData): BusinessCardValida
     }
   }
 
-  if (data.email.trim() && (hasControlCharacters(data.email) || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(data.email.trim()))) {
+  if (data.email.trim() && (hasControlCharacters(data.email) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim()))) {
     return { valid: false, field: "email", message: "Enter a valid email address." };
   }
 
