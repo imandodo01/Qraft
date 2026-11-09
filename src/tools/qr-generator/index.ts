@@ -130,8 +130,10 @@ export function renderQrGenerator(container: HTMLElement): void {
       const downloadLink = document.createElement("a");
       downloadLink.href = currentDataUrl;
       downloadLink.download = "qraft-qr.png";
+      document.body.append(downloadLink);
       downloadLink.click();
       setFeedback("PNG download requested.", "success");
+      downloadLink.remove();
     } catch {
       setFeedback("Your browser could not start the PNG download. Please try again.", "error");
     }

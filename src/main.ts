@@ -183,11 +183,15 @@ function renderNotFound(): void {
 
 function handleSearchShortcut(event: KeyboardEvent): void {
   if (event.key !== "/" || event.ctrlKey || event.metaKey || event.altKey) return;
+
+  const searchInput = app.querySelector<HTMLInputElement>("#tool-search");
+  if (!searchInput) return;
+
   const target = event.target;
-  if (target instanceof HTMLElement && ["INPUT", "TEXTAREA"].includes(target.tagName)) return;
+  if (target instanceof HTMLElement && (["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) || target.isContentEditable)) return;
 
   event.preventDefault();
-  app.querySelector<HTMLInputElement>("#tool-search")?.focus();
+  searchInput.focus();
 }
 
 function render(): void {
