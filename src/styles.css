@@ -16,6 +16,7 @@
 .vcard-field label { display: block; margin-bottom: 8px; color: var(--color-text); font-size: 12px; font-weight: 700; }
 .vcard-field input { display: block; width: 100%; min-height: 43px; padding: 0 11px; border: 1px solid var(--color-border); border-radius: 9px; background: #fff; color: var(--color-text); font: inherit; font-size: 12px; }
 .vcard-field input::placeholder { color: #a2a8b2; }
+.vcard-field input[aria-invalid="true"] { border-color: #b54747; }
 .vcard-field input:focus-visible { outline: 3px solid rgb(99 91 219 / 20%); outline-offset: 1px; border-color: var(--color-accent); }
 .vcard-field-hint { margin: 6px 0 0; color: var(--color-muted); font-size: 10px; line-height: 1.5; }
 .vcard-feedback { min-height: 18px; margin: 8px 0 0; color: var(--color-muted); font-size: 11px; line-height: 1.5; }
