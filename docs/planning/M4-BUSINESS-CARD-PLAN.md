@@ -38,15 +38,9 @@ This is a client-side card designer, not a hosted public profile service.
 
 ## 3. Export technical decision
 
-Use a browser-side DOM-to-image approach only after a short compatibility spike. Compare candidate libraries for:
-- Vite/browser support.
-- TypeScript compatibility.
-- Font and SVG handling.
-- Image/CSS limitations.
-- License and maintenance.
-- Output quality and bundle size.
+The implementation uses a dedicated browser Canvas renderer rather than DOM-to-image capture. The card preview and exported PNG share the same data model, while the renderer draws a fixed 1200 × 675 landscape composition. This avoids adding a runtime dependency and avoids DOM screenshot limitations around CSS, external fonts, and SVG serialization.
 
-Do not assume that a screenshot of the DOM is pixel-identical across browsers. Test the actual downloaded PNG.
+The Canvas output is a deliberate visual rendering of the same card content, not a pixel capture of the DOM preview. Manual acceptance must compare the preview and downloaded PNG for content parity, legibility, theme/accent parity, and clipping.
 
 PDF export is **not a v1.0 acceptance requirement**. Add it only if the chosen export path provides a reliable, low-complexity result without destabilizing PNG export.
 
