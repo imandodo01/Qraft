@@ -237,19 +237,19 @@ Do not use the same QR library to generate and independently validate its own ou
 
 M2 is complete only when all of the following pass:
 
-- [ ] QR Generator is reachable from Qraft navigation and tool discovery.
-- [ ] URL and plain-text modes work.
-- [ ] URL validation accepts HTTP/HTTPS and rejects malformed or unsupported schemes.
-- [ ] Empty and whitespace-only inputs do not produce a QR.
-- [ ] Valid input produces a preview without a backend request.
-- [ ] Preview updates when valid input changes; stale preview is not misrepresented.
-- [ ] PNG download works and produces a valid image.
-- [ ] Downloaded PNG decodes to the exact input using independent scanners.
-- [ ] Unicode content is preserved.
-- [ ] Capacity errors are understandable and do not crash the app.
-- [ ] Automated tests, lint, typecheck, and production build pass.
-- [ ] Responsive and keyboard-accessibility checks pass.
-- [ ] Documentation and project status are updated.
+- [x] QR Generator is reachable from Qraft navigation and tool discovery.
+- [x] URL and plain-text modes work.
+- [x] URL validation accepts HTTP/HTTPS and rejects malformed or unsupported schemes.
+- [x] Empty and whitespace-only inputs do not produce a QR.
+- [x] Valid input produces a preview without a backend request.
+- [x] Preview updates when valid input changes; stale preview is not misrepresented.
+- [x] PNG download works and produces a valid image.
+- [x] Downloaded PNG decodes to the exact input using independent scanners.
+- [x] Unicode content is preserved.
+- [x] Capacity errors are understandable and do not crash the app.
+- [x] Automated tests, lint, typecheck, and production build pass.
+- [x] Responsive and keyboard-accessibility checks pass.
+- [x] Documentation and project status are updated.
 
 ## 9. Suggested implementation sequence
 
