@@ -1,3 +1,4 @@
+import { generateQrPng, QrGenerationError } from "../qr-generator/qr-service";
 import { serializeVCard } from "./serializer";
 import { validateVCardContact } from "./validation";
 import { createEmptyContact, type VCardContact } from "./types";
@@ -78,7 +79,21 @@ export function renderVCardGenerator(container: HTMLElement): void {
             <span>VCF · vCard 3.0</span>
           </div>
           <pre class="vcard-preview" id="vcard-preview" aria-live="polite">Your contact file will appear here as you fill in the form.</pre>
-          <p class="vcard-preview-note">The preview shows the contact data that will be included in your downloaded .vcf file.</p>
+          <p class="vcard-preview-note">The preview shows the contact data included in your downloaded .vcf file.</p>
+
+          <section class="vcard-qr-section" aria-labelledby="vcard-qr-heading">
+            <div class="vcard-qr-heading">
+              <h2 id="vcard-qr-heading">Share as QR code</h2>
+              <span>vCard payload · QR Code</span>
+            </div>
+            <div class="vcard-qr-stage">
+              <p class="vcard-qr-empty" id="vcard-qr-empty">Complete the contact details to create a shareable QR code.</p>
+              <img class="vcard-qr-image" id="vcard-qr-image" alt="QR code containing this contact's vCard data" hidden />
+            </div>
+            <p class="vcard-qr-note" id="vcard-qr-note">The QR code contains the same vCard data as your VCF file. Scanner behavior varies: some devices offer to save the contact, while others display the vCard text.</p>
+            <button class="vcard-button vcard-button--secondary" id="vcard-qr-download" type="button" disabled>Download QR PNG</button>
+            <p class="vcard-feedback" id="vcard-qr-feedback" role="status" aria-live="polite"></p>
+          </section>
         </section>
       </section>
     </main>
@@ -98,8 +113,14 @@ export function renderVCardGenerator(container: HTMLElement): void {
   const copyButton = requireControl<HTMLButtonElement>("#vcard-copy");
   const downloadButton = requireControl<HTMLButtonElement>("#vcard-download");
   const clearButton = requireControl<HTMLButtonElement>("#vcard-clear");
+  const qrImage = requireControl<HTMLImageElement>("#vcard-qr-image");
+  const qrEmpty = requireControl<HTMLParagraphElement>("#vcard-qr-empty");
+  const qrFeedback = requireControl<HTMLParagraphElement>("#vcard-qr-feedback");
+  const qrDownloadButton = requireControl<HTMLButtonElement>("#vcard-qr-download");
 
   let currentVCard = "";
+  let currentQrDataUrl = "";
+  let previewGeneration = 0;
 
   function readContact(): VCardContact {
     const contact = createEmptyContact();
@@ -115,10 +136,20 @@ export function renderVCardGenerator(container: HTMLElement): void {
     feedback.dataset.state = state;
   }
 
-  function updatePreview(): void {
+  async function updatePreview(): Promise<void> {
     form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
       input.removeAttribute("aria-invalid");
     });
+    const generation = ++previewGeneration;
+    currentQrDataUrl = "";
+    qrDownloadButton.disabled = true;
+    qrImage.hidden = true;
+    qrImage.removeAttribute("src");
+    qrEmpty.hidden = false;
+    qrEmpty.textContent = "Generating a QR code from your vCard…";
+    qrFeedback.textContent = "";
+    qrFeedback.dataset.state = "";
+
     const contact = readContact();
     const hasInput = Object.values(contact).some((value) => value.length > 0);
     const validation = validateVCardContact(contact);
@@ -130,6 +161,9 @@ export function renderVCardGenerator(container: HTMLElement): void {
       form.querySelector<HTMLInputElement>(`input[data-field="${validation.field}"]`)?.setAttribute("aria-invalid", "true");
       preview.textContent = hasInput ? "Complete the required details to preview your contact file." : "Your contact file will appear here as you fill in the form.";
       setFeedback(hasInput ? validation.message : "", hasInput ? "error" : "");
+      qrEmpty.textContent = hasInput
+        ? "Complete the required details to create a QR code."
+        : "Complete the contact details to create a shareable QR code.";
       return;
     }
 
@@ -139,6 +173,28 @@ export function renderVCardGenerator(container: HTMLElement): void {
       copyButton.disabled = false;
       downloadButton.disabled = false;
       setFeedback("Your vCard is ready. Contact details remain in this browser.", "success");
+      qrEmpty.textContent = "Generating a QR code from your vCard…";
+      qrFeedback.textContent = "Encoding the contact locally…";
+
+      try {
+        const qrDataUrl = await generateQrPng(currentVCard);
+        if (generation !== previewGeneration) return;
+        currentQrDataUrl = qrDataUrl;
+        qrImage.src = qrDataUrl;
+        qrImage.hidden = false;
+        qrEmpty.hidden = true;
+        qrDownloadButton.disabled = false;
+        qrFeedback.textContent = "Your contact QR code is ready.";
+        qrFeedback.dataset.state = "success";
+      } catch (error) {
+        if (generation !== previewGeneration) return;
+        qrEmpty.hidden = false;
+        qrEmpty.textContent = "This contact is too large to fit in a QR code. You can still download the VCF file.";
+        qrFeedback.textContent = error instanceof QrGenerationError
+          ? error.message
+          : "The contact QR code could not be generated.";
+        qrFeedback.dataset.state = "error";
+      }
     } catch {
       preview.textContent = "The contact preview could not be generated.";
       setFeedback("Check the contact details and try again.", "error");
@@ -155,8 +211,17 @@ export function renderVCardGenerator(container: HTMLElement): void {
 
   form.addEventListener("reset", () => {
     window.setTimeout(() => {
+      previewGeneration += 1;
       currentVCard = "";
+      currentQrDataUrl = "";
       preview.textContent = "Your contact file will appear here as you fill in the form.";
+      qrImage.hidden = true;
+      qrImage.removeAttribute("src");
+      qrEmpty.hidden = false;
+      qrEmpty.textContent = "Complete the contact details to create a shareable QR code.";
+      qrDownloadButton.disabled = true;
+      qrFeedback.textContent = "";
+      qrFeedback.dataset.state = "";
       copyButton.disabled = true;
       downloadButton.disabled = true;
       form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
@@ -196,6 +261,23 @@ export function renderVCardGenerator(container: HTMLElement): void {
       setFeedback("Your contact.vcf download has started.", "success");
     } catch {
       setFeedback("The VCF file could not be downloaded. Please try again.", "error");
+    }
+  });
+
+  qrDownloadButton.addEventListener("click", () => {
+    if (!currentQrDataUrl) return;
+
+    try {
+      const link = document.createElement("a");
+      link.href = currentQrDataUrl;
+      link.download = "contact-qr.png";
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setFeedback("Your contact QR code download has started.", "success");
+    } catch {
+      qrFeedback.textContent = "The QR image could not be downloaded. Please try again.";
+      qrFeedback.dataset.state = "error";
     }
   });
 
