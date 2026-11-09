@@ -1,6 +1,6 @@
 # M2 — QR Studio Technical Preparation
 
-**Document status:** Implementation in progress; see [PR #4](https://github.com/imandodo01/Qraft/pull/4)  
+**Document status:** Accepted; [PR #4](https://github.com/imandodo01/Qraft/pull/4) merged after CI and user verification.  
 **Milestone:** M2 — QR Studio  
 **Preparation branch:** `docs/m2-qr-studio-prep`  
 **Implementation branch (when unblocked):** `feature/m2-qr-studio`  
@@ -279,6 +279,6 @@ M2 is complete only when all of the following pass:
 
 ## 11. M2 readiness
 
-M1 has been accepted and merged. M2 implementation is underway in [PR #4](https://github.com/imandodo01/Qraft/pull/4); implementation and user acceptance checks remain pending.
+M1 and M2 have been accepted and merged. M2 implementation in [PR #4](https://github.com/imandodo01/Qraft/pull/4) passed CI and user-reported local and manual verification. See [M2 verification record](../verification/M2-VERIFICATION.md).
 
-This document remains the technical reference for M2 scope and acceptance. Do not treat the implementation PR as accepted until its automated and manual verification gates pass.
+This document remains the technical record of M2's original scope and decisions. Deferred QR enhancements are tracked in the [feature backlog](../backlog/FEATURE-BACKLOG.md).
