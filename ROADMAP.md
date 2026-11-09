@@ -53,21 +53,42 @@ Verification record: [M2 verification guide](docs/verification/M2-VERIFICATION.m
 ## M3 — Contact Studio: vCard Generator
 
 **Preparation:** [M3 vCard Generator plan](docs/planning/M3-VCARD-GENERATOR-PLAN.md)  
-**Implementation:** `feature/m3-vcard-generator`  
-**Status:** In progress.
+**Implementation:** [PR #5](https://github.com/imandodo01/Qraft/pull/5) on `feature/m3-vcard-generator`.  
+**Status:** Completed; PR #5 merged into `main` on 2026-11-09 after user acceptance.
 
-- [ ] Common contact fields and validation.
-- [ ] vCard 3.0 serialization.
-- [ ] Preview, copy, and VCF download.
-- [ ] Unicode, escaping, and line-folding tests.
-- [ ] Import verification with independent contact applications.
+- [x] Common contact fields and validation.
+- [x] vCard 3.0 serialization.
+- [x] Preview, copy, and VCF download.
+- [x] Unicode, escaping, and line-folding tests.
+- [x] QR contact sharing from the serialized vCard.
+- [x] User confirmed behavior met expectations and QR generation worked.
+- [x] PR #5 merged.
 
-**Exit criteria:** Generated VCF imports correctly in the tested contact applications.
+Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.md). Detailed per-environment evidence should be retained there; this status does not imply unreported cross-application or security tests.
+
+**Exit criteria:** User accepted the implementation and merged PR #5.
+
+## Security Baseline — pre-M4 gate
+
+**Status:** Documentation baseline added; dependency and implementation verification remain open.
+
+- [x] Add security policy and vulnerability reporting guidance.
+- [x] Add architecture-based threat model.
+- [x] Add ASVS-oriented security verification checklist.
+- [x] Record dependency inventory and lockfile mismatch.
+- [ ] Regenerate and verify the dependency lockfile.
+- [ ] Run and review current npm vulnerability audits.
+- [ ] Complete relevant manual security and privacy checks.
+- [ ] Verify production hosting headers before public release.
+
+Documents: [Security policy](SECURITY.md), [Threat model](THREAT-MODEL.md), [Security verification](SECURITY-VERIFICATION.md), and [Dependency audit](docs/security/DEPENDENCY-AUDIT.md).
+
+**Exit criteria:** Lockfile is reproducible, dependency advisories are reviewed, and the applicable security checks have recorded evidence. This baseline is not an ASVS certification.
 
 ## M4 — Digital Business Card
 
 **Preparation:** [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md)  
-**Implementation branch after M3:** `feature/m4-business-card`
+**Implementation branch after Security Baseline:** `feature/m4-business-card`
 
 - [ ] Contact details and one polished card layout.
 - [ ] Minimal theme/accent customization.
@@ -105,9 +126,10 @@ Verification record: [M2 verification guide](docs/verification/M2-VERIFICATION.m
 - [ ] Reproducible clean install and production build using the committed lockfile and documented Node.js version.
 - [ ] Verify static hosting and direct-route behavior.
 - [ ] Complete README, changelog, and deployment instructions.
+- [ ] Complete applicable security verification and resolve release-blocking findings.
 - [ ] Resolve all release-blocking defects.
 
-**Exit criteria:** All v1.0 acceptance criteria pass on a production build, including real export checks, privacy review, and browser acceptance.
+**Exit criteria:** All v1.0 acceptance criteria pass on a production build, including real export checks, privacy review, security verification, and browser acceptance.
 
 ## v1.0 minimum feature commitment
 
@@ -133,4 +155,4 @@ Everything else is post-v1.0 unless explicitly approved as a scope change. See t
 - Do not merge an implementation milestone until automated and user acceptance checks pass.
 - Update this roadmap and `PROJECT_STATUS.md` as milestones progress.
 - Ideas discovered during implementation go to a backlog; they do not silently expand the active milestone.
-- Apply the [Quality and Architecture Review](planning/QUALITY-ARCHITECTURE-REVIEW.md) to milestone plans and release acceptance without expanding the v1.0 feature commitment.
+- Apply the [Quality and Architecture Review](docs/planning/QUALITY-ARCHITECTURE-REVIEW.md) to milestone plans and release acceptance without expanding the v1.0 feature commitment.
