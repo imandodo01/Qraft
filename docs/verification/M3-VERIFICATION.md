@@ -30,7 +30,9 @@ Expected results:
 - [ ] Given name and family name populate the structured `N` property.
 - [ ] Organization, job title, email, phone, and website are optional.
 - [ ] Empty optional properties are omitted.
-- [ ] Invalid email and malformed/non-HTTP(S) website values receive useful feedback.
+- [ ] Bare website domains are accepted and normalized to HTTPS in the preview and exports.
+- [ ] Explicit HTTP URLs remain HTTP; explicit HTTPS URLs remain HTTPS.
+- [ ] Unsupported schemes, malformed URLs, and URLs containing whitespace receive useful feedback.
 - [ ] Commas, semicolons, backslashes, and line breaks in text values are escaped.
 - [ ] Unicode names and organization values are preserved.
 - [ ] Long content lines are folded at 75 UTF-8 octets without splitting a multibyte character.
