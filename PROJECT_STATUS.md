@@ -52,7 +52,8 @@ Verification: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
 - [x] Add live preview, copy, download, and clear interactions.
 - [x] Register the tool and connect its route.
 - [x] Add serializer and validation tests.
-- [ ] Run lint, typecheck, tests, and production build locally and in CI.
+- [x] GitHub Actions lint, typecheck, tests, and production build passed.
+- [ ] Run lint, typecheck, tests, and production build locally.
 - [ ] Verify downloaded VCF imports in independent contact applications.
 - [ ] Complete responsive, keyboard, and privacy checks.
 - [ ] Obtain user acceptance and merge the implementation PR.
