@@ -45,54 +45,54 @@ async function copyText(value: string): Promise<boolean> {
 
 export function renderTransformTool(container: HTMLElement, options: TransformToolOptions): void {
   const modeControl = options.modes.length > 1
-    ? \`<label class="utility-label" for="\${options.id}-mode">Action</label>
-       <select class="utility-select" id="\${options.id}-mode">
-         \${options.modes.map((mode) => \`<option value="\${mode.value}">\${mode.label}</option>\`).join("")}
-       </select>\`
+    ? `<label class="utility-label" for="${options.id}-mode">Action</label>
+       <select class="utility-select" id="${options.id}-mode">
+         ${options.modes.map((mode) => `<option value="${mode.value}">${mode.label}</option>`).join("")}
+       </select>`
     : "";
 
-  container.innerHTML = \`
+  container.innerHTML = `
     <main class="detail-page utility-page">
       <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>
       <a class="back-link" href="#/">← Back to all tools</a>
       <header class="utility-intro">
-        <p class="eyebrow">\${options.category.toUpperCase()}</p>
-        <h1>\${options.title}</h1>
-        <p class="detail-description">\${options.description}</p>
+        <p class="eyebrow">${options.category.toUpperCase()}</p>
+        <h1>${options.title}</h1>
+        <p class="detail-description">${options.description}</p>
       </header>
-      <section class="utility-workspace" aria-label="\${options.title} workspace">
+      <section class="utility-workspace" aria-label="${options.title} workspace">
         <div class="utility-panel">
-          \${modeControl}
-          <label class="utility-label" for="\${options.id}-input">\${options.inputLabel}</label>
-          <textarea class="utility-textarea" id="\${options.id}-input" rows="10" spellcheck="false" autocomplete="off" placeholder="\${options.inputPlaceholder}"></textarea>
+          ${modeControl}
+          <label class="utility-label" for="${options.id}-input">${options.inputLabel}</label>
+          <textarea class="utility-textarea" id="${options.id}-input" rows="10" spellcheck="false" autocomplete="off" placeholder="${options.inputPlaceholder}"></textarea>
           <div class="utility-actions">
-            <button class="utility-button utility-button--primary" id="\${options.id}-run" type="button">\${options.actionLabel}</button>
-            <button class="utility-button utility-button--secondary" id="\${options.id}-clear" type="button">Clear</button>
+            <button class="utility-button utility-button--primary" id="${options.id}-run" type="button">${options.actionLabel}</button>
+            <button class="utility-button utility-button--secondary" id="${options.id}-clear" type="button">Clear</button>
           </div>
         </div>
         <div class="utility-panel">
-          <label class="utility-label" for="\${options.id}-output">\${options.outputLabel}</label>
-          <textarea class="utility-textarea utility-textarea--output" id="\${options.id}-output" rows="10" readonly aria-label="\${options.outputLabel}" placeholder="Your result will appear here."></textarea>
+          <label class="utility-label" for="${options.id}-output">${options.outputLabel}</label>
+          <textarea class="utility-textarea utility-textarea--output" id="${options.id}-output" rows="10" readonly aria-label="${options.outputLabel}" placeholder="Your result will appear here."></textarea>
           <div class="utility-actions">
-            <button class="utility-button utility-button--secondary" id="\${options.id}-copy" type="button" disabled>Copy output</button>
+            <button class="utility-button utility-button--secondary" id="${options.id}-copy" type="button" disabled>Copy output</button>
           </div>
-          <p class="utility-feedback" id="\${options.id}-feedback" role="status" aria-live="polite"></p>
+          <p class="utility-feedback" id="${options.id}-feedback" role="status" aria-live="polite"></p>
         </div>
       </section>
       <p class="utility-privacy">● Input is processed locally in this browser. Nothing is uploaded.</p>
     </main>
-  \`;
+  `;
 
-  const input = container.querySelector<HTMLTextAreaElement>(\`#\${options.id}-input\`);
-  const output = container.querySelector<HTMLTextAreaElement>(\`#\${options.id}-output\`);
-  const feedback = container.querySelector<HTMLParagraphElement>(\`#\${options.id}-feedback\`);
-  const runButton = container.querySelector<HTMLButtonElement>(\`#\${options.id}-run\`);
-  const clearButton = container.querySelector<HTMLButtonElement>(\`#\${options.id}-clear\`);
-  const copyButton = container.querySelector<HTMLButtonElement>(\`#\${options.id}-copy\`);
-  const modeSelect = container.querySelector<HTMLSelectElement>(\`#\${options.id}-mode\`);
+  const input = container.querySelector<HTMLTextAreaElement>(`#${options.id}-input`);
+  const output = container.querySelector<HTMLTextAreaElement>(`#${options.id}-output`);
+  const feedback = container.querySelector<HTMLParagraphElement>(`#${options.id}-feedback`);
+  const runButton = container.querySelector<HTMLButtonElement>(`#${options.id}-run`);
+  const clearButton = container.querySelector<HTMLButtonElement>(`#${options.id}-clear`);
+  const copyButton = container.querySelector<HTMLButtonElement>(`#${options.id}-copy`);
+  const modeSelect = container.querySelector<HTMLSelectElement>(`#${options.id}-mode`);
 
   if (!input || !output || !feedback || !runButton || !clearButton || !copyButton) {
-    throw new Error(\`\${options.title} could not initialize its controls.\`);
+    throw new Error(`${options.title} could not initialize its controls.`);
   }
 
   if (modeSelect && options.initialMode) modeSelect.value = options.initialMode;
