@@ -5,10 +5,7 @@
 
 ## M0 — Product and repository planning
 
-- [x] Product vision and principles.
-- [x] Initial v1.0 feature scope.
-- [x] Architecture and quality direction.
-- [x] Design direction and development conventions.
+- [x] Product vision, principles, initial v1.0 scope, architecture, design direction, and development conventions.
 - [x] Quality and architecture review with accepted/deferred/rejected decisions ([review](docs/planning/QUALITY-ARCHITECTURE-REVIEW.md)).
 
 **Exit criteria:** Product scope, technical direction, and quality decisions are documented.
@@ -18,113 +15,86 @@
 **Branch:** `feature/m1-foundation`  
 **Status:** Completed; PR #1 merged into `main`.
 
-- [x] Vite + TypeScript foundation.
-- [x] Strict TypeScript, Vitest, and ESLint configuration.
-- [x] Responsive application shell.
-- [x] Tool registry, search, and category filtering.
-- [x] Basic hash routing.
-- [x] Initial unit tests and GitHub Actions workflow.
-- [x] Commit lockfile after local dependency installation.
-- [x] Local lint, typecheck, tests, and production build.
-- [x] Manual desktop/mobile and navigation checks.
-- [x] Accept and merge PR #1.
+- [x] Vite + strict TypeScript foundation, Vitest, ESLint, responsive shell.
+- [x] Tool registry, search, category filtering, and hash routing.
+- [x] Initial tests and GitHub Actions CI.
+- [x] Local automated checks and manual desktop/mobile/navigation acceptance.
 
-Verification record: [M1 verification guide](docs/verification/M1-VERIFICATION.md).
-
-**Exit criteria:** The application foundation builds and passes its local and CI acceptance checks.
+Verification: [M1 verification guide](docs/verification/M1-VERIFICATION.md).
 
 ## M2 — QR Studio
 
-**Preparation:** [M2 QR Studio technical plan](docs/planning/M2-QR-STUDIO-TECHNICAL-PLAN.md)  
-**Implementation:** [PR #4](https://github.com/imandodo01/Qraft/pull/4) on `feature/m2-qr-studio`.  
+**Implementation:** [PR #4](https://github.com/imandodo01/Qraft/pull/4)  
 **Status:** Completed; PR #4 merged after CI, local automated checks, and user manual verification.
 
-- [x] Generate QR codes from URL and plain text.
-- [x] Local browser-side generation and live preview.
-- [x] URL/input validation and useful errors.
-- [x] PNG export.
+- [x] URL/plain-text QR generation, live preview, validation, and PNG export.
 - [x] Unicode and independent scanner verification.
 - [x] Responsive, keyboard, and privacy checks.
 
-Verification record: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
-
-**Exit criteria:** Downloaded PNG decodes to the exact intended payload using independent QR readers.
+Verification: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
 
 ## M3 — Contact Studio: vCard Generator
 
-**Preparation:** [M3 vCard Generator plan](docs/planning/M3-VCARD-GENERATOR-PLAN.md)  
-**Implementation:** [PR #5](https://github.com/imandodo01/Qraft/pull/5) on `feature/m3-vcard-generator`.  
-**Status:** Completed; PR #5 merged into `main` on 2026-11-09 after user acceptance.
+**Implementation:** [PR #5](https://github.com/imandodo01/Qraft/pull/5)  
+**Status:** Completed; PR #5 merged into `main` on 2026-11-09.
 
-- [x] Common contact fields and validation.
-- [x] vCard 3.0 serialization.
-- [x] Preview, copy, and VCF download.
-- [x] Unicode, escaping, and line-folding tests.
-- [x] QR contact sharing from the serialized vCard.
-- [x] User confirmed behavior met expectations and QR generation worked.
-- [x] PR #5 merged.
+- [x] Typed contact fields, validation, and vCard 3.0 serialization.
+- [x] Preview, copy, VCF download, and QR contact sharing.
+- [x] Unicode, escaping, and UTF-8 line-folding tests.
+- [x] User acceptance and PR merge.
 
-Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.md). Detailed per-environment evidence should be retained there; this status does not imply unreported cross-application or security tests.
-
-**Exit criteria:** User accepted the implementation and merged PR #5.
+Verification: [M3 verification guide](docs/verification/M3-VERIFICATION.md). The record does not imply unreported cross-application or security tests.
 
 ## Security Baseline — pre-M4 gate
 
-**Status:** Security baseline documentation and focused local checks recorded in PR #6; remaining dependency and production-hosting work is tracked for release hardening.
+**Status:** Baseline documentation and focused checks recorded in PR #6. Remaining dependency and production-hosting work is carried into M6.
 
-- [x] Add security policy and vulnerability reporting guidance.
-- [x] Add architecture-based threat model.
-- [x] Add ASVS-oriented security verification checklist.
-- [x] Record dependency inventory and lockfile mismatch.
-- [x] Regenerate the dependency lockfile and verify a local clean install.
-- [x] Run and review current npm vulnerability audits; production audit is clean and remaining minimatch findings are documented.
-- [x] Complete focused maintainer-reported manual XSS, network, and browser-storage checks for tested QR/vCard flows.
-- [ ] Verify production hosting headers before public release.
+- [x] Security policy, threat model, and ASVS-oriented verification checklist.
+- [x] Dependency inventory, lockfile repair, and clean-install verification.
+- [x] Production-only audit reported zero findings; seven moderate development dependency findings were documented.
+- [x] Focused maintainer-reported XSS, network, and browser-storage checks for tested QR/vCard flows.
+- [ ] Reassess dependencies and verify production hosting headers before public release.
 
 Documents: [Security policy](SECURITY.md), [Threat model](THREAT-MODEL.md), [Security verification](SECURITY-VERIFICATION.md), and [Dependency audit](docs/security/DEPENDENCY-AUDIT.md).
 
-**Exit criteria:** Lockfile is reproducible, dependency advisories are reviewed, and the applicable security checks have recorded evidence. This baseline is not an ASVS certification.
+This baseline is not an ASVS certification.
 
 ## M4 — Digital Business Card
 
-**Preparation:** [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md)  
-**Implementation branch:** `feature/m4-business-card`
+**Implementation:** [PR #7](https://github.com/imandodo01/Qraft/pull/7)  
+**Status:** Completed; PR #7 squash-merged into `main` on 2026-11-09.
 
-- [x] Contact details and one polished landscape card layout.
-- [x] Light/dark theme and five accent choices.
-- [x] Responsive live preview.
-- [x] Browser-native Canvas PNG export (1200 × 675), without an added dependency.
-- [x] VCF download and embedded vCard QR using existing M2/M3 modules.
-- [x] QR capacity fallback that preserves VCF and card PNG export.
-- [x] Automated validation and vCard mapping tests.
-- [ ] Local automated and manual acceptance checks.
+- [x] Responsive landscape card with live preview, light/dark theme, and custom HEX accent.
+- [x] Canvas PNG export (1200 × 675), VCF download, and embedded vCard QR reusing M2/M3 services.
+- [x] QR capacity fallback preserves VCF and card PNG export.
+- [x] Automated checks and user acceptance.
 
-**Exit criteria:** User can export a legible card image and independently verify its VCF and QR contact payload. No hosted profile is implied. See [M4 verification checklist](docs/verification/M4-VERIFICATION.md).
+Verification: [M4 verification checklist](docs/verification/M4-VERIFICATION.md). Hosted profiles and backend functionality remain out of scope.
 
 ## M5 — Developer and Text Tools
 
-**Preparation:** [M5 Developer and Text Tools plan](docs/planning/M5-DEVELOPER-TEXT-TOOLS-PLAN.md)  
-**Implementation branch:** `feature/m5-developer-text-tools`  
-**Status:** In progress; initial implementation and automated tests are being developed.
+**Implementation:** [PR #8](https://github.com/imandodo01/Qraft/pull/8)  
+**Branch:** `feature/m5-developer-text-tools`  
+**Status:** Completed; PR #8 squash-merged into `main` on 2026-11-09.
 
-- [x] JSON formatter / validator implementation.
-- [x] UTF-8 Base64 encoder / decoder implementation.
-- [x] URI component encoder / decoder implementation.
-- [x] UUID v4 generator implementation using secure browser randomness.
-- [x] Text counter implementation.
-- [x] Case converter implementation.
-- [x] Tool registry and route integration.
-- [x] Initial pure-function edge-case tests.
-- [ ] Local lint, typecheck, test suite, and production build.
-- [ ] Manual interaction, clipboard, responsive, keyboard, and privacy checks.
+- [x] JSON formatter, minifier, and validator.
+- [x] UTF-8 Base64 encoder/decoder.
+- [x] URI-component encoder/decoder.
+- [x] UUID v4 generator using secure browser randomness.
+- [x] Unicode-aware text counter.
+- [x] Case converter with seven modes.
+- [x] Registry and route integration.
+- [x] User-confirmed local install, lint, typecheck, tests, production build, and manual acceptance.
+- [x] GitHub Actions CI green.
 
-**Exit criteria:** All six tools work locally, have documented behavior, and pass automated tests.
+Verification: [M5 verification guide](docs/verification/M5-VERIFICATION.md).
 
 ## M6 — Integration and release hardening
 
-**Implementation branch:** `feature/m6-release-hardening`
+**Implementation branch:** `feature/m6-release-hardening`  
+**Status:** In progress.
 
-- [ ] Full regression testing across all v1.0 tools.
+- [ ] Full regression testing across all nine v1.0 tools.
 - [ ] Cross-browser export verification with tested versions recorded.
 - [ ] Responsive, keyboard, and accessibility review.
 - [ ] Privacy and browser-network review.
@@ -134,8 +104,11 @@ Documents: [Security policy](SECURITY.md), [Threat model](THREAT-MODEL.md), [Sec
 - [ ] Complete README, changelog, and deployment instructions.
 - [ ] Complete applicable security verification and resolve release-blocking findings.
 - [ ] Resolve all release-blocking defects.
+- [ ] Final user acceptance and green CI on the final PR head.
 
-**Exit criteria:** All v1.0 acceptance criteria pass on a production build, including real export checks, privacy review, security verification, and browser acceptance.
+Verification: [M6 release hardening checklist](docs/verification/M6-VERIFICATION.md).
+
+**Exit criteria:** All v1.0 acceptance criteria pass on a production build, including real export checks, privacy review, security verification, deployment checks, and browser acceptance.
 
 ## v1.0 minimum feature commitment
 
@@ -143,7 +116,7 @@ The initial release is limited to these nine tools:
 
 1. QR Generator — URL/text, preview, PNG.
 2. vCard Generator — common contact fields, VCF.
-3. Digital Business Card — one layout, simple theme choices, PNG, VCF, embedded contact QR.
+3. Digital Business Card — one layout, theme choices, PNG, VCF, embedded contact QR.
 4. JSON Formatter — format, minify, validate.
 5. Base64 — UTF-8 text encode/decode.
 6. URL Encoder — URI-component encode/decode.
@@ -151,14 +124,13 @@ The initial release is limited to these nine tools:
 8. Text Counter — characters, words, lines.
 9. Case Converter — common case formats.
 
-Everything else is post-v1.0 unless explicitly approved as a scope change. See the [feature backlog](docs/backlog/FEATURE-BACKLOG.md) for deferred ideas.
+Everything else is post-v1.0 unless explicitly approved as a scope change. See the [feature backlog](docs/backlog/FEATURE-BACKLOG.md).
 
 ## Workflow and scope control
 
 - One milestone = one feature branch = one PR and acceptance cycle.
-- Preparation documents can be reviewed in parallel.
-- Implementation and integration remain sequential where they depend on earlier shared interfaces.
+- Preparation documents can be reviewed in parallel; implementation remains sequential where interfaces depend on earlier milestones.
 - Do not merge an implementation milestone until automated and user acceptance checks pass.
 - Update this roadmap and `PROJECT_STATUS.md` as milestones progress.
-- Ideas discovered during implementation go to a backlog; they do not silently expand the active milestone.
-- Apply the [Quality and Architecture Review](docs/planning/QUALITY-ARCHITECTURE-REVIEW.md) to milestone plans and release acceptance without expanding the v1.0 feature commitment.
+- New ideas go to the backlog; they do not silently expand the active milestone.
+- Apply the [Quality and Architecture Review](docs/planning/QUALITY-ARCHITECTURE-REVIEW.md) without expanding the v1.0 feature commitment.
