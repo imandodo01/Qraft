@@ -1,26 +1,24 @@
 # M2 — QR Studio Verification
 
-**Branch:** \`feature/m2-qr-studio\`  
+**Branch:** feature/m2-qr-studio  
 **Status:** Implementation in progress
 
 Run these checks from the repository root after pulling the branch.
 
 ## 1. Install dependencies
 
-\`\`\`bash
-npm install
-\`\`\`
+Run npm install.
 
-Review \`git status --short\`. Commit the updated \`package-lock.json\` after verifying that no unrelated files changed.
+Review git status --short. Commit the updated package-lock.json after verifying that no unrelated files changed.
 
 ## 2. Automated checks
 
-\`\`\`bash
-npm run lint
-npm run typecheck
-npm test
-npm run build
-\`\`\`
+Run these commands:
+
+    npm run lint
+    npm run typecheck
+    npm test
+    npm run build
 
 Expected results:
 - ESLint reports no errors.
@@ -30,25 +28,21 @@ Expected results:
 
 ## 3. Run the application
 
-\`\`\`bash
-npm run dev
-\`\`\`
-
-Open the local URL printed by Vite and navigate to QR Generator from the Qraft home page.
+Run npm run dev, open the local URL printed by Vite, and navigate to QR Generator from the Qraft home page.
 
 ## 4. Functional checks
 
 - [ ] QR Generator is marked Available in tool discovery.
 - [ ] Website URL and Plain text modes can be selected.
-- [ ] Complete \`http://\` and \`https://\` URLs generate previews.
-- [ ] URLs without a scheme, malformed URLs, and unsupported schemes (\`javascript:\`, \`data:\`, \`file:\`, \`ftp:\`) are rejected.
+- [ ] Complete http:// and https:// URLs generate previews.
+- [ ] URLs without a scheme, malformed URLs, and unsupported schemes (javascript:, data:, file:, ftp:) are rejected.
 - [ ] URL input containing whitespace is rejected without being silently rewritten.
 - [ ] Plain text preserves spaces and line breaks.
 - [ ] Indonesian text, accented characters, and emoji can be encoded.
 - [ ] Empty and whitespace-only content do not generate a QR.
 - [ ] Editing valid content replaces the previous preview immediately.
 - [ ] Clear removes the preview and disables download.
-- [ ] Download PNG creates \`qraft-qr.png\`.
+- [ ] Download PNG creates qraft-qr.png.
 - [ ] Oversized payloads produce a clear capacity message and are not truncated.
 
 ## 5. Independent scanner checks
