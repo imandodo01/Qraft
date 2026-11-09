@@ -128,7 +128,7 @@ describe("vCard QR sharing", () => {
       email: "ada@example.com",
     };
     const vCard = serializeVCard(contact);
-    await expect(generateQrPng(vCard)).resolves.toMatch(/^data:image\\/png;base64,/);
+    await expect(generateQrPng(vCard)).resolves.toMatch(/^data:image\/png;base64,/);
   });
 
   it("does not truncate a vCard that exceeds QR capacity", async () => {
