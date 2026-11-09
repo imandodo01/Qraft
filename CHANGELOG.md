@@ -11,6 +11,7 @@ All notable project changes will be documented here.
 - Feature backlog for deferred QR Studio and general product ideas.
 
 ### Changed
+- vCard website fields now accept bare domains and default them to HTTPS while preserving explicit HTTP/HTTPS schemes.
 - Tool discovery now reports QR Generator and vCard Generator as available.
 - Roadmap and project status now reflect M2 acceptance and M3 implementation.
 
