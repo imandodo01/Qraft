@@ -26,7 +26,7 @@ Use a non-sensitive test contact rather than real personal contact data.
 - [ ] Enter a full name; confirm live preview updates.
 - [ ] Fill optional title, organization, email, phone, website, and tagline.
 - [ ] Confirm invalid email and website values show useful feedback and disable exports.
-- [ ] Change Light/Dark theme and each accent color; confirm preview updates.
+- [ ] Change Light/Dark theme and choose several custom accent colors; confirm preview updates.
 - [ ] Clear the form; confirm preview, QR, and export states reset.
 
 ### PNG export
