@@ -10,7 +10,6 @@ This backlog records useful ideas that are not part of the committed v1.0 scope.
 - Phone call and SMS.
 - WhatsApp chat links.
 - Geographic location.
-- Contact payloads (vCard) when the contact workflow is available.
 
 ### Appearance and export
 - Foreground and background colors with contrast safeguards.
@@ -33,6 +32,8 @@ This backlog records useful ideas that are not part of the committed v1.0 scope.
 - Preserve a clear quiet zone and sufficient contrast.
 - Treat styling, logos, and frames as progressive enhancements; generated codes must remain independently scannable.
 - Test the actual exported file with independent readers after changing encoder settings.
+
+- vCard QR contact sharing is implemented in Contact Studio; future QR work should focus on presets beyond vCard.
 
 ## General product ideas
 
