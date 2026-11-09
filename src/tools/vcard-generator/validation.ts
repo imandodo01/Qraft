@@ -12,6 +12,35 @@ function hasControlCharacters(value: string): boolean {
   return false;
 }
 
+/**
+ * Normalizes a website value for vCard output.
+ * Bare domains and URLs default to HTTPS; explicit HTTP(S) is preserved.
+ */
+export function normalizeWebsiteUrl(value: string): string {
+  const website = value.trim();
+  if (!website) return "";
+
+  if (/\s/.test(website)) {
+    throw new TypeError("Website URLs cannot contain whitespace.");
+  }
+
+  const hasScheme = /^[a-z][a-z\d+.-]*:/i.test(website);
+  if (hasScheme && !/^https?:\/\//i.test(website)) {
+    throw new TypeError("Only HTTP and HTTPS website URLs are supported.");
+  }
+
+  const candidate = /^https?:\/\//i.test(website)
+    ? website
+    : `https://${website}`;
+
+  const parsedUrl = new URL(candidate);
+  if (!["http:", "https:"].includes(parsedUrl.protocol) || !parsedUrl.hostname) {
+    throw new TypeError("Enter a valid HTTP or HTTPS website URL.");
+  }
+
+  return parsedUrl.href;
+}
+
 export function validateVCardContact(contact: VCardContact): VCardValidationResult {
   if (!isPresent(contact.formattedName)) {
     return {
@@ -40,33 +69,13 @@ export function validateVCardContact(contact: VCardContact): VCardValidationResu
   }
 
   if (isPresent(contact.website)) {
-    const website = contact.website;
-    if (
-      website !== website.trim() ||
-      /\s/.test(website) ||
-      !/^https?:\/\//i.test(website)
-    ) {
-      return {
-        valid: false,
-        field: "website",
-        message: "Enter a complete website URL starting with http:// or https://.",
-      };
-    }
-
     try {
-      const parsedUrl = new URL(website);
-      if (!["http:", "https:"].includes(parsedUrl.protocol) || !parsedUrl.hostname) {
-        return {
-          valid: false,
-          field: "website",
-          message: "Enter a valid HTTP or HTTPS website URL.",
-        };
-      }
+      normalizeWebsiteUrl(contact.website);
     } catch {
       return {
         valid: false,
         field: "website",
-        message: "Enter a valid HTTP or HTTPS website URL.",
+        message: "Enter a valid website domain or HTTP/HTTPS URL.",
       };
     }
   }
