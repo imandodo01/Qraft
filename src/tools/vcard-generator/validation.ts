@@ -24,7 +24,7 @@ export function normalizeWebsiteUrl(value: string): string {
     throw new TypeError("Website URLs cannot contain whitespace.");
   }
 
-  const hasScheme = /^[a-z][a-z\d+.-]*:/i.test(website);
+  const hasScheme = /^[a-z][a-z\d+.-]*:(?!\d+(?:[/?#]|$))/i.test(website);
   if (hasScheme && !/^https?:\/\//i.test(website)) {
     throw new TypeError("Only HTTP and HTTPS website URLs are supported.");
   }
