@@ -65,7 +65,7 @@ export function renderVCardGenerator(container: HTMLElement): void {
 
           <p class="vcard-feedback" id="vcard-feedback" role="status" aria-live="polite"></p>
           <div class="vcard-actions">
-            <button class="vcard-button vcard-button--secondary" id="vcard-clear" type="reset">Clear</button>
+            <button class="vcard-button vcard-button--secondary" id="vcard-clear" type="button">Clear</button>
             <button class="vcard-button vcard-button--secondary" id="vcard-copy" type="button" disabled>Copy vCard</button>
             <button class="vcard-button vcard-button--primary" id="vcard-download" type="button" disabled>Download VCF</button>
           </div>
@@ -121,7 +121,7 @@ export function renderVCardGenerator(container: HTMLElement): void {
 
     if (!validation.valid) {
       preview.textContent = hasInput ? "Complete the required details to preview your contact file." : "Your contact file will appear here as you fill in the form.";
-      setFeedback(hasInput ? validation.message : "");
+      setFeedback(hasInput ? validation.message : "", hasInput ? "error" : "");
       return;
     }
 
@@ -177,7 +177,7 @@ export function renderVCardGenerator(container: HTMLElement): void {
       document.body.append(link);
       link.click();
       link.remove();
-      URL.revokeObjectURL(objectUrl);
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
       setFeedback("Your contact.vcf download has started.", "success");
     } catch {
       setFeedback("The VCF file could not be downloaded. Please try again.", "error");
