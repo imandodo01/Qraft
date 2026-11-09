@@ -92,7 +92,8 @@ Verification: [M5 verification guide](docs/verification/M5-VERIFICATION.md).
 ## M6 — Integration and release hardening
 
 **Implementation branch:** `feature/m6-release-hardening`  
-**Status:** In progress.
+**Status:** In progress.  
+**Selected static host:** Cloudflare Pages (selected; deployment not yet performed).
 
 - [ ] Full regression testing across all nine v1.0 tools.
 - [ ] Cross-browser export verification with tested versions recorded.
@@ -100,13 +101,15 @@ Verification: [M5 verification guide](docs/verification/M5-VERIFICATION.md).
 - [ ] Privacy and browser-network review.
 - [ ] Performance and production bundle review.
 - [ ] Reproducible clean install and production build using the committed lockfile and documented Node.js version.
-- [ ] Verify static hosting and direct-route behavior.
+- [x] Select static host and document Cloudflare Pages build settings.
+- [ ] Verify preview deployment, HTTPS, security headers, and production asset behavior.
 - [ ] Complete README, changelog, and deployment instructions.
 - [ ] Complete applicable security verification and resolve release-blocking findings.
 - [ ] Resolve all release-blocking defects.
 - [ ] Final user acceptance and green CI on the final PR head.
 
-Verification: [M6 release hardening checklist](docs/verification/M6-VERIFICATION.md).
+Verification: [M6 release hardening checklist](docs/verification/M6-VERIFICATION.md).  
+Deployment: [Cloudflare Pages guide](docs/deployment/CLOUDFLARE-PAGES.md).
 
 **Exit criteria:** All v1.0 acceptance criteria pass on a production build, including real export checks, privacy review, security verification, deployment checks, and browser acceptance.
 
