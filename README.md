@@ -39,7 +39,7 @@ The remaining v1.0 tools are listed in the [roadmap](ROADMAP.md).
 Requirements: Node.js 22.12 or newer and npm.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 

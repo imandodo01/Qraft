@@ -20,4 +20,5 @@ All notable project changes will be documented here.
 - Automated tests cover QR validation/generation and vCard validation/serialization.
 - M2 passed CI and user-reported local/manual acceptance checks.
 - M3 was accepted by the user and PR #5 was merged; detailed per-environment verification evidence remains in the M3 verification guide.
-- Initial security documentation is in place. Dependency vulnerability audit and lockfile remediation remain pending.
+- Repaired the dependency lockfile and changed CI installation to `npm ci`.
+- Updated Vitest to 5.1.0; local lint, typecheck, and 33 tests passed. Production audit reports zero vulnerabilities; seven moderate minimatch findings remain under review.
