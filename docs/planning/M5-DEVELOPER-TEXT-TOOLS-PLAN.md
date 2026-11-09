@@ -2,7 +2,7 @@
 
 **Target:** Qraft v1.0  
 **Implementation branch after M4 acceptance:** `feature/m5-developer-text-tools`  
-**Status:** Prepared; blocked until prior milestones are accepted.
+**Status:** Implementation in progress on `feature/m5-developer-text-tools`; automated and manual acceptance remain pending.
 
 ## 1. Goal
 
