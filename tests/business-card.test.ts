@@ -27,7 +27,7 @@ describe("validateBusinessCard", () => {
     const base = { ...createEmptyBusinessCard(), fullName: "Ada Lovelace" };
     expect(validateBusinessCard({ ...base, email: "not-an-email" })).toMatchObject({ valid: false, field: "email" });
     expect(validateBusinessCard({ ...base, website: "javascript:alert(1)" })).toMatchObject({ valid: false, field: "website" });
-    expect(validateBusinessCard({ ...base, phone: "+1 555\\nTEL:123" })).toMatchObject({ valid: false, field: "phone" });
+    expect(validateBusinessCard({ ...base, phone: "+1 555\nTEL:123" })).toMatchObject({ valid: false, field: "phone" });
   });
 });
 
