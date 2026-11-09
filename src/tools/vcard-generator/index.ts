@@ -84,16 +84,20 @@ export function renderVCardGenerator(container: HTMLElement): void {
     </main>
   `;
 
-  const form = container.querySelector<HTMLFormElement>("#vcard-form");
-  const preview = container.querySelector<HTMLPreElement>("#vcard-preview");
-  const feedback = container.querySelector<HTMLParagraphElement>("#vcard-feedback");
-  const copyButton = container.querySelector<HTMLButtonElement>("#vcard-copy");
-  const downloadButton = container.querySelector<HTMLButtonElement>("#vcard-download");
-  const clearButton = container.querySelector<HTMLButtonElement>("#vcard-clear");
-
-  if (!form || !preview || !feedback || !copyButton || !downloadButton || !clearButton) {
-    throw new Error("The vCard Generator workspace could not be initialized.");
+  function requireControl<T extends HTMLElement>(selector: string): T {
+    const control = container.querySelector<T>(selector);
+    if (!control) {
+      throw new Error("The vCard Generator control could not be initialized: " + selector);
+    }
+    return control;
   }
+
+  const form = requireControl<HTMLFormElement>("#vcard-form");
+  const preview = requireControl<HTMLPreElement>("#vcard-preview");
+  const feedback = requireControl<HTMLParagraphElement>("#vcard-feedback");
+  const copyButton = requireControl<HTMLButtonElement>("#vcard-copy");
+  const downloadButton = requireControl<HTMLButtonElement>("#vcard-download");
+  const clearButton = requireControl<HTMLButtonElement>("#vcard-clear");
 
   let currentVCard = "";
 
