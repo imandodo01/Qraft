@@ -104,15 +104,19 @@ Documents: [Security policy](SECURITY.md), [Threat model](THREAT-MODEL.md), [Sec
 ## M5 — Developer and Text Tools
 
 **Preparation:** [M5 Developer and Text Tools plan](docs/planning/M5-DEVELOPER-TEXT-TOOLS-PLAN.md)  
-**Implementation branch after M4:** `feature/m5-developer-text-tools`
+**Implementation branch:** `feature/m5-developer-text-tools`  
+**Status:** In progress; initial implementation and automated tests are being developed.
 
-- [ ] JSON formatter / validator.
-- [ ] UTF-8 Base64 encoder / decoder.
-- [ ] URI component encoder / decoder.
-- [ ] UUID v4 generator.
-- [ ] Text counter.
-- [ ] Case converter.
-- [ ] Copy, clear, validation, and edge-case tests.
+- [x] JSON formatter / validator implementation.
+- [x] UTF-8 Base64 encoder / decoder implementation.
+- [x] URI component encoder / decoder implementation.
+- [x] UUID v4 generator implementation using secure browser randomness.
+- [x] Text counter implementation.
+- [x] Case converter implementation.
+- [x] Tool registry and route integration.
+- [x] Initial pure-function edge-case tests.
+- [ ] Local lint, typecheck, test suite, and production build.
+- [ ] Manual interaction, clipboard, responsive, keyboard, and privacy checks.
 
 **Exit criteria:** All six tools work locally, have documented behavior, and pass automated tests.
 

@@ -5,8 +5,8 @@
 Qraft is a lightweight, browser-based collection of practical tools for creating, converting, inspecting, and sharing digital information. Core tool processing runs locally in your browser; no account or application backend is required for the current v1.0 workflows.
 
 > Project status: v1.0 implementation in progress  
-> Completed: M1 Foundation, M2 QR Studio, M3 Contact Studio  
-> Active work: Security Baseline before M4
+> Completed: M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card  
+> Active work: M5 Developer and Text Tools
 
 ## Product principles
 
@@ -31,8 +31,15 @@ Qraft intentionally avoids a frontend UI framework and does not require a backen
 
 - **QR Generator** — URL and plain-text QR generation, live preview, and PNG export.
 - **vCard Generator** — vCard 3.0 preview, VCF export, and QR contact sharing.
+- **Digital Business Card** — responsive card preview, custom accent color, PNG/VCF export, and contact QR.
+- **JSON Formatter** — format, minify, and validate JSON.
+- **Base64** — UTF-8 text encoding and decoding.
+- **URL Encoder** — URI-component encoding and decoding.
+- **UUID Generator** — cryptographically secure UUID v4 generation.
+- **Text Counter** — count Unicode code points, words, and lines.
+- **Case Converter** — convert common text case formats.
 
-The remaining v1.0 tools are listed in the [roadmap](ROADMAP.md).
+M5 utilities are under implementation and verification. See the [roadmap](ROADMAP.md) for current milestone status.
 
 ## Development
 

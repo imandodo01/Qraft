@@ -2,7 +2,7 @@
 
 **Target:** Qraft v1.0  
 **Implementation branch after M4 acceptance:** `feature/m5-developer-text-tools`  
-**Status:** Prepared; blocked until prior milestones are accepted.
+**Status:** Implementation in progress on `feature/m5-developer-text-tools`; automated and manual acceptance remain pending.
 
 ## 1. Goal
 
@@ -86,7 +86,7 @@ src/components/
 
 Keep pure transformation functions separate from DOM rendering. Do not introduce a global state manager.
 
-## 5. Test and acceptance criteria
+Verification checklist: [M5 verification guide](../verification/M5-VERIFICATION.md).\n\n## 5. Test and acceptance criteria
 
 ### JSON
 - [ ] Valid nested JSON formats and minifies.

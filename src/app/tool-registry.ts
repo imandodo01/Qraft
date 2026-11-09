@@ -40,7 +40,7 @@ export const tools: ToolDefinition[] = [
     description: "Format, minify, and validate JSON.",
     category: "Developer Tools",
     keywords: ["json", "format", "minify", "validate"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "base64",
@@ -48,7 +48,7 @@ export const tools: ToolDefinition[] = [
     description: "Encode and decode UTF-8 text using Base64.",
     category: "Developer Tools",
     keywords: ["base64", "encode", "decode"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "url-encoder",
@@ -56,7 +56,7 @@ export const tools: ToolDefinition[] = [
     description: "Encode or decode URI components.",
     category: "Developer Tools",
     keywords: ["url", "uri", "encode", "decode"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "uuid-generator",
@@ -64,7 +64,7 @@ export const tools: ToolDefinition[] = [
     description: "Generate UUID v4 identifiers.",
     category: "Developer Tools",
     keywords: ["uuid", "guid", "identifier", "random"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "text-counter",
@@ -72,7 +72,7 @@ export const tools: ToolDefinition[] = [
     description: "Count words, characters, and lines.",
     category: "Text Tools",
     keywords: ["text", "word", "character", "line", "counter"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "case-converter",
@@ -80,7 +80,7 @@ export const tools: ToolDefinition[] = [
     description: "Convert text between common letter cases.",
     category: "Text Tools",
     keywords: ["text", "case", "uppercase", "lowercase", "camelcase"],
-    status: "planned",
+    status: "available",
   },
 ];
 

@@ -3,6 +3,12 @@ import { resolveRoute } from "./app/router";
 import { renderQrGenerator } from "./tools/qr-generator";
 import { renderVCardGenerator } from "./tools/vcard-generator";
 import { renderBusinessCard } from "./tools/business-card";
+import { renderJsonFormatter } from "./tools/json-formatter";
+import { renderBase64Tool } from "./tools/base64";
+import { renderUrlEncoder } from "./tools/url-encoder";
+import { renderUuidGenerator } from "./tools/uuid-generator";
+import { renderTextCounter } from "./tools/text-counter";
+import { renderCaseConverter } from "./tools/case-converter";
 import "./styles.css";
 
 function getAppRoot(): HTMLDivElement {
@@ -163,6 +169,36 @@ function renderToolDetail(toolId: string): void {
 
   if (tool.id === "business-card" && tool.status === "available") {
     renderBusinessCard(app);
+    return;
+  }
+
+  if (tool.id === "json-formatter" && tool.status === "available") {
+    renderJsonFormatter(app);
+    return;
+  }
+
+  if (tool.id === "base64" && tool.status === "available") {
+    renderBase64Tool(app);
+    return;
+  }
+
+  if (tool.id === "url-encoder" && tool.status === "available") {
+    renderUrlEncoder(app);
+    return;
+  }
+
+  if (tool.id === "uuid-generator" && tool.status === "available") {
+    renderUuidGenerator(app);
+    return;
+  }
+
+  if (tool.id === "text-counter" && tool.status === "available") {
+    renderTextCounter(app);
+    return;
+  }
+
+  if (tool.id === "case-converter" && tool.status === "available") {
+    renderCaseConverter(app);
     return;
   }
 

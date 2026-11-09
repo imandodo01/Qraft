@@ -36,6 +36,12 @@ describe("tool registry", () => {
       "qr-generator",
       "vcard-generator",
       "business-card",
+      "json-formatter",
+      "base64",
+      "url-encoder",
+      "uuid-generator",
+      "text-counter",
+      "case-converter",
     ]);
   });
 
