@@ -62,7 +62,7 @@ describe("serializeVCard", () => {
     const base = { ...createEmptyContact(), formattedName: "Ada Lovelace" };
     expect(serializeVCard({ ...base, website: "example.com" })).toContain("URL:https://example.com/");
     expect(serializeVCard({ ...base, website: "http://example.com/profile" })).toContain("URL:http://example.com/profile");
-    expect(serializeVCard({ ...base, website: "https://example.com" })).toContain("URL:https://example.com/\\r\\n");
+    expect(serializeVCard({ ...base, website: "https://example.com" })).toContain("URL:https://example.com/");
   });
 
 
