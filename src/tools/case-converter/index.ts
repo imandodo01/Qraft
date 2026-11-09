@@ -7,7 +7,7 @@ export function convertCase(input: string, target: TextCase): string {
   if (target === "uppercase") return input.toLocaleUpperCase();
 
   const words = input.match(/[\p{L}\p{N}]+/gu) ?? [];
-  if (target === "title") return words.map((word) => word.charAt(0).toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()).join(" ");
+  if (target === "title") return input.replace(/[\p{L}\p{N}]+/gu, (word) => word.charAt(0).toLocaleUpperCase() + word.slice(1).toLocaleLowerCase());
   const normalized = words.map((word) => word.toLocaleLowerCase());
   if (target === "snake") return normalized.join("_");
   if (target === "kebab") return normalized.join("-");
