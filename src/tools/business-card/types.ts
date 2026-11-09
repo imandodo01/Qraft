@@ -1,7 +1,9 @@
 import { createEmptyContact, type VCardContact } from "../vcard-generator/types";
 
 export type CardTheme = "light" | "dark";
-export type CardAccent = "violet" | "blue" | "teal" | "rose" | "amber";
+export type CardAccent = string;
+
+export const DEFAULT_CARD_ACCENT = "#635bdb";
 
 export interface BusinessCardData {
   fullName: string;
@@ -25,7 +27,7 @@ export function createEmptyBusinessCard(): BusinessCardData {
     website: "",
     tagline: "",
     theme: "light",
-    accent: "violet",
+    accent: DEFAULT_CARD_ACCENT,
   };
 }
 
