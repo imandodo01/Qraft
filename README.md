@@ -29,7 +29,7 @@ Qraft intentionally avoids a frontend UI framework and does not require a backen
 ## Current tools
 
 - **QR Generator** — URL and plain-text QR generation, live preview, and PNG export.
-- **vCard Generator** — common contact fields, vCard 3.0 preview, copy, and VCF export (M3 in progress).
+- **vCard Generator** — vCard 3.0 preview, VCF export, and QR contact sharing (M3 in progress).
 
 The remaining v1.0 tools are listed in the [roadmap](ROADMAP.md).
 
