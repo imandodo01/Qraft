@@ -102,7 +102,7 @@ function renderHome(): void {
             <input id="tool-search" type="search" placeholder="Search tools, e.g. QR, JSON, Base64..." autocomplete="off" />
             <kbd>/</kbd>
           </label>
-          <div class="hero__meta"><span>9 tools planned</span><span>·</span><span>4 categories</span></div>
+          <div class="hero__meta"><span>${tools.filter((tool) => tool.status === "available").length} available</span><span>·</span><span>${tools.filter((tool) => tool.status === "planned").length} coming soon</span><span>·</span><span>${categories.length} categories</span></div>
         </section>
 
         <section class="tools-section" aria-labelledby="tools-heading">
