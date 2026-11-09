@@ -32,7 +32,7 @@ export const tools: ToolDefinition[] = [
     description: "Design and export a shareable digital business card.",
     category: "Contact Studio",
     keywords: ["business", "profile", "card", "contact"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "json-formatter",
