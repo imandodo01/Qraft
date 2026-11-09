@@ -112,7 +112,7 @@ export function renderBusinessCard(container: HTMLElement): void {
   function readData(): BusinessCardData {
     const next = { ...data };
     form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
-      const key = input.dataset.field as keyof BusinessCardData;
+      const key = input.dataset.field as "fullName" | "jobTitle" | "organization" | "email" | "phone" | "website" | "tagline";
       next[key] = input.value;
     });
     const theme = form.querySelector<HTMLSelectElement>('[data-option="theme"]')?.value;
