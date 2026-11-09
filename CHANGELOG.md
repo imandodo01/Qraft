@@ -13,10 +13,12 @@ All notable project changes will be documented here.
 - Security policy, architecture-based threat model, ASVS-oriented verification checklist, and dependency audit record.
 - Feature backlog for deferred QR Studio and general product ideas.
 - M6 integration and release-hardening verification checklist.
+- Cloudflare Pages deployment guide and static-hosting security-header baseline.
 
 ### Changed
 - Updated roadmap, project status, and README to reflect the completed M1–M5 milestones and active M6 release-hardening work.
 - Documented the nine-tool v1.0 scope and explicit post-v1.0 boundaries.
+- Selected Cloudflare Pages as the intended Qraft v1.0 static host; account connection and deployment remain pending.
 
 ### Quality
 - M2 passed CI and user-reported local/manual acceptance checks.
