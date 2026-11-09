@@ -105,10 +105,10 @@ describe("serializeVCard", () => {
     const longName = "é".repeat(80);
     const contact = { ...createEmptyContact(), formattedName: longName };
     const output = serializeVCard(contact);
-    const physicalLines = output.split("\\r\\n").filter(Boolean);
+    const physicalLines = output.split("\r\n").filter(Boolean);
 
     expect(physicalLines.every((line) => new TextEncoder().encode(line).length <= 75)).toBe(true);
-    expect(output.replace(/\\r\\n /g, "")).toContain(`FN:${longName}`);
+    expect(output.replace(/\r\n /g, "")).toContain(`FN:${longName}`);
   });
 
   it("rejects serialization when the required name is missing", () => {
