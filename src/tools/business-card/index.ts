@@ -94,6 +94,16 @@ export function renderBusinessCard(container: HTMLElement): void {
     throw new Error("Digital Business Card could not initialize its controls.");
   }
 
+  const formElement = form;
+  const feedbackElement = feedback;
+  const previewElement = preview;
+  const qrImageElement = qrImage;
+  const qrEmptyElement = qrEmpty;
+  const pngButtonElement = pngButton;
+  const vcfButtonElement = vcfButton;
+  const qrButtonElement = qrButton;
+  const clearButtonElement = clearButton;
+
   let data = createEmptyBusinessCard();
   let currentVCard = "";
   let currentQr = "";
@@ -101,20 +111,20 @@ export function renderBusinessCard(container: HTMLElement): void {
 
   function readData(): BusinessCardData {
     const next = { ...data };
-    form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
+    formElement.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
       const key = input.dataset.field as "fullName" | "jobTitle" | "organization" | "email" | "phone" | "website" | "tagline";
       next[key] = input.value;
     });
-    const theme = form.querySelector<HTMLSelectElement>('[data-option="theme"]')?.value;
-    const accent = form.querySelector<HTMLInputElement>('[data-option="accent"]')?.value;
+    const theme = formElement.querySelector<HTMLSelectElement>('[data-option="theme"]')?.value;
+    const accent = formElement.querySelector<HTMLInputElement>('[data-option="accent"]')?.value;
     next.theme = theme === "dark" ? "dark" : "light";
     next.accent = /^#[0-9a-fA-F]{6}$/.test(accent ?? "") ? accent! : DEFAULT_CARD_ACCENT;
     return next;
   }
 
   function setFeedback(message: string, state: "error" | "success" | "" = ""): void {
-    feedback.textContent = message;
-    feedback.dataset.state = state;
+    feedbackElement.textContent = message;
+    feedbackElement.dataset.state = state;
   }
 
   function updateCardPreview(): void {
@@ -123,8 +133,8 @@ export function renderBusinessCard(container: HTMLElement): void {
       data.phone,
       data.website,
     ].filter((value) => value.trim());
-    preview.dataset.theme = data.theme;
-    preview.style.setProperty("--card-accent", data.accent);
+    previewElement.dataset.theme = data.theme;
+    previewElement.style.setProperty("--card-accent", data.accent);
     container.querySelector("#business-card-preview-org")!.textContent = data.organization.trim() || "PERSONAL PROFILE";
     container.querySelector("#business-card-preview-name")!.textContent = data.fullName.trim() || "Your name";
     container.querySelector("#business-card-preview-job")!.textContent = data.jobTitle.trim() || "Your role or profession";
@@ -143,52 +153,52 @@ export function renderBusinessCard(container: HTMLElement): void {
     const current = ++generation;
     currentVCard = "";
     currentQr = "";
-    pngButton.disabled = true;
-    vcfButton.disabled = true;
-    qrButton.disabled = true;
-    qrImage.hidden = true;
-    qrImage.removeAttribute("src");
-    qrEmpty.hidden = false;
+    pngButtonElement.disabled = true;
+    vcfButtonElement.disabled = true;
+    qrButtonElement.disabled = true;
+    qrImageElement.hidden = true;
+    qrImageElement.removeAttribute("src");
+    qrEmptyElement.hidden = false;
 
     const validation = validateBusinessCard(data);
     if (!validation.valid) {
       const hasInput = Object.values(data).some((value) => typeof value === "string" && value.length > 0);
       setFeedback(hasInput ? validation.message : "", hasInput ? "error" : "");
-      qrEmpty.textContent = "Complete your name to generate a contact QR.";
+      qrEmptyElement.textContent = "Complete your name to generate a contact QR.";
       return;
     }
 
     try {
       currentVCard = serializeVCard(toVCardContact(data));
-      vcfButton.disabled = false;
-      pngButton.disabled = false;
+      vcfButtonElement.disabled = false;
+      pngButtonElement.disabled = false;
       setFeedback("Your business card is ready to export.", "success");
-      qrEmpty.textContent = "Generating contact QR locally…";
+      qrEmptyElement.textContent = "Generating contact QR locally…";
       const qr = await generateQrPng(currentVCard);
       if (current !== generation) return;
       currentQr = qr;
-      qrImage.src = qr;
-      qrImage.hidden = false;
-      qrEmpty.hidden = true;
-      qrButton.disabled = false;
+      qrImageElement.src = qr;
+      qrImageElement.hidden = false;
+      qrEmptyElement.hidden = true;
+      qrButtonElement.disabled = false;
     } catch (error) {
       if (current !== generation) return;
-      qrEmpty.textContent = "This contact is too large for a QR code. VCF and card PNG exports remain available.";
+      qrEmptyElement.textContent = "This contact is too large for a QR code. VCF and card PNG exports remain available.";
       setFeedback(error instanceof QrGenerationError ? error.message : "The contact preview could not be generated.", "error");
     }
   }
 
-  form.addEventListener("input", () => void update());
-  form.addEventListener("change", () => void update());
+  formElement.addEventListener("input", () => void update());
+  formElement.addEventListener("change", () => void update());
 
-  clearButton.addEventListener("click", () => {
-    form.reset();
+  clearButtonElement.addEventListener("click", () => {
+    formElement.reset();
     data = createEmptyBusinessCard();
     void update();
-    form.querySelector<HTMLInputElement>('[data-field="fullName"]')?.focus();
+    formElement.querySelector<HTMLInputElement>('[data-field="fullName"]')?.focus();
   });
 
-  vcfButton.addEventListener("click", () => {
+  vcfButtonElement.addEventListener("click", () => {
     if (!currentVCard) return;
     const blob = new Blob([currentVCard], { type: "text/vcard;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -201,7 +211,7 @@ export function renderBusinessCard(container: HTMLElement): void {
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
-  pngButton.addEventListener("click", async () => {
+  pngButtonElement.addEventListener("click", async () => {
     try {
       const blob = await exportBusinessCardPng(data);
       const url = URL.createObjectURL(blob);
@@ -218,7 +228,7 @@ export function renderBusinessCard(container: HTMLElement): void {
     }
   });
 
-  qrButton.addEventListener("click", () => {
+  qrButtonElement.addEventListener("click", () => {
     if (!currentQr) return;
     const link = document.createElement("a");
     link.href = currentQr;
