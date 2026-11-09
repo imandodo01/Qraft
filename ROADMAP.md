@@ -70,7 +70,7 @@ Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.m
 
 ## Security Baseline — pre-M4 gate
 
-**Status:** Documentation baseline added; dependency and implementation verification remain open.
+**Status:** Security baseline documentation and focused local checks recorded in PR #6; remaining dependency and production-hosting work is tracked for release hardening.
 
 - [x] Add security policy and vulnerability reporting guidance.
 - [x] Add architecture-based threat model.
@@ -78,7 +78,7 @@ Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.m
 - [x] Record dependency inventory and lockfile mismatch.
 - [x] Regenerate the dependency lockfile and verify a local clean install.
 - [x] Run and review current npm vulnerability audits; production audit is clean and remaining minimatch findings are documented.
-- [ ] Complete relevant manual security and privacy checks.
+- [x] Complete focused maintainer-reported manual XSS, network, and browser-storage checks for tested QR/vCard flows.
 - [ ] Verify production hosting headers before public release.
 
 Documents: [Security policy](SECURITY.md), [Threat model](THREAT-MODEL.md), [Security verification](SECURITY-VERIFICATION.md), and [Dependency audit](docs/security/DEPENDENCY-AUDIT.md).
@@ -88,16 +88,18 @@ Documents: [Security policy](SECURITY.md), [Threat model](THREAT-MODEL.md), [Sec
 ## M4 — Digital Business Card
 
 **Preparation:** [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md)  
-**Implementation branch after Security Baseline:** `feature/m4-business-card`
+**Implementation branch:** `feature/m4-business-card`
 
-- [ ] Contact details and one polished card layout.
-- [ ] Minimal theme/accent customization.
-- [ ] Responsive live preview.
-- [ ] PNG export.
-- [ ] VCF download and embedded vCard QR using M2/M3 modules.
-- [ ] QR capacity fallback and export verification.
+- [x] Contact details and one polished landscape card layout.
+- [x] Light/dark theme and five accent choices.
+- [x] Responsive live preview.
+- [x] Browser-native Canvas PNG export (1200 × 675), without an added dependency.
+- [x] VCF download and embedded vCard QR using existing M2/M3 modules.
+- [x] QR capacity fallback that preserves VCF and card PNG export.
+- [x] Automated validation and vCard mapping tests.
+- [ ] Local automated and manual acceptance checks.
 
-**Exit criteria:** User can export a legible card image and independently verify its VCF and QR contact payload. No hosted profile is implied.
+**Exit criteria:** User can export a legible card image and independently verify its VCF and QR contact payload. No hosted profile is implied. See [M4 verification checklist](docs/verification/M4-VERIFICATION.md).
 
 ## M5 — Developer and Text Tools
 
