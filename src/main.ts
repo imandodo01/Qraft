@@ -172,6 +172,36 @@ function renderToolDetail(toolId: string): void {
     return;
   }
 
+  if (tool.id === "json-formatter" && tool.status === "available") {
+    renderJsonFormatter(app);
+    return;
+  }
+
+  if (tool.id === "base64" && tool.status === "available") {
+    renderBase64Tool(app);
+    return;
+  }
+
+  if (tool.id === "url-encoder" && tool.status === "available") {
+    renderUrlEncoder(app);
+    return;
+  }
+
+  if (tool.id === "uuid-generator" && tool.status === "available") {
+    renderUuidGenerator(app);
+    return;
+  }
+
+  if (tool.id === "text-counter" && tool.status === "available") {
+    renderTextCounter(app);
+    return;
+  }
+
+  if (tool.id === "case-converter" && tool.status === "available") {
+    renderCaseConverter(app);
+    return;
+  }
+
   app.innerHTML = `
     <main class="detail-page">
       <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>
