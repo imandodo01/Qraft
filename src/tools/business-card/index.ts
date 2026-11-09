@@ -1,6 +1,6 @@
 import { generateQrPng, QrGenerationError } from "../qr-generator/qr-service";
 import { serializeVCard } from "../vcard-generator/serializer";
-import { toVCardContact, createEmptyBusinessCard, type BusinessCardData } from "./types";
+import { toVCardContact, createEmptyBusinessCard, DEFAULT_CARD_ACCENT, type BusinessCardData } from "./types";
 import { validateBusinessCard } from "./validation";
 import { exportBusinessCardPng } from "./export";
 
@@ -13,14 +13,6 @@ const fieldLabels: Array<{ key: keyof Pick<BusinessCardData, "fullName" | "jobTi
   { key: "website", label: "Website", placeholder: "example.com", type: "url" },
   { key: "tagline", label: "Tagline", placeholder: "Building useful things with thoughtful technology" },
 ];
-
-const accentLabels: Record<BusinessCardData["accent"], string> = {
-  violet: "Violet",
-  blue: "Blue",
-  teal: "Teal",
-  rose: "Rose",
-  amber: "Amber",
-};
 
 export function renderBusinessCard(container: HTMLElement): void {
   container.innerHTML = `
@@ -52,9 +44,7 @@ export function renderBusinessCard(container: HTMLElement): void {
             </div>
             <div class="business-card-field">
               <label for="business-card-accent">Accent color</label>
-              <select id="business-card-accent" data-option="accent">
-                ${Object.entries(accentLabels).map(([value, label]) => `<option value="${value}">${label}</option>`).join("")}
-              </select>
+              <input id="business-card-accent" data-option="accent" type="color" value="${DEFAULT_CARD_ACCENT}" aria-label="Choose card accent color" />
             </div>
           </div>
           <p class="business-card-feedback" id="business-card-feedback" role="status" aria-live="polite"></p>
@@ -67,7 +57,7 @@ export function renderBusinessCard(container: HTMLElement): void {
         </form>
         <section class="business-card-preview-panel" aria-labelledby="business-card-preview-heading">
           <div class="business-card-section-heading"><h2 id="business-card-preview-heading">Live preview</h2><span>Landscape · 1200 × 675</span></div>
-          <article class="business-card-preview" id="business-card-preview" data-theme="light" data-accent="violet">
+          <article class="business-card-preview" id="business-card-preview" data-theme="light">
             <div class="business-card-preview__glow"></div>
             <p class="business-card-preview__organization" id="business-card-preview-org">PERSONAL PROFILE</p>
             <h2 id="business-card-preview-name">Your name</h2>
@@ -116,9 +106,9 @@ export function renderBusinessCard(container: HTMLElement): void {
       next[key] = input.value;
     });
     const theme = form.querySelector<HTMLSelectElement>('[data-option="theme"]')?.value;
-    const accent = form.querySelector<HTMLSelectElement>('[data-option="accent"]')?.value;
+    const accent = form.querySelector<HTMLInputElement>('[data-option="accent"]')?.value;
     next.theme = theme === "dark" ? "dark" : "light";
-    next.accent = accent === "blue" || accent === "teal" || accent === "rose" || accent === "amber" ? accent : "violet";
+    next.accent = /^#[0-9a-fA-F]{6}$/.test(accent ?? "") ? accent! : DEFAULT_CARD_ACCENT;
     return next;
   }
 
@@ -134,7 +124,7 @@ export function renderBusinessCard(container: HTMLElement): void {
       data.website,
     ].filter((value) => value.trim());
     preview.dataset.theme = data.theme;
-    preview.dataset.accent = data.accent;
+    preview.style.setProperty("--card-accent", data.accent);
     container.querySelector("#business-card-preview-org")!.textContent = data.organization.trim() || "PERSONAL PROFILE";
     container.querySelector("#business-card-preview-name")!.textContent = data.fullName.trim() || "Your name";
     container.querySelector("#business-card-preview-job")!.textContent = data.jobTitle.trim() || "Your role or profession";
