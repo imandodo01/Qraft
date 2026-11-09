@@ -2,7 +2,7 @@
 
 **Branch:** `feature/m1-foundation`  
 **Pull request:** #1 — Qraft application foundation  
-**Status:** Awaiting local verification and acceptance
+**Status:** Accepted; PR #1 merged into `main`.
 
 This guide is the acceptance checklist for M1. Run it from the repository root after checking out the feature branch.
 
@@ -122,15 +122,6 @@ Reply on PR #1 or in the development conversation with:
 
 A concise report is enough when every check passes. Include complete error output when something fails.
 
-## 8. Acceptance and merge gate
+## 8. Acceptance record
 
-M1 is accepted only when:
-
-- [ ] Lockfile is committed.
-- [ ] CI succeeds on the latest PR commit.
-- [ ] All automated checks pass locally.
-- [ ] Manual acceptance checklist passes.
-- [ ] Any defects found during verification are fixed and retested.
-- [ ] PR is reviewed and explicitly approved for merge.
-
-Do not merge this PR or start M2 implementation until these conditions are satisfied. M2 design and dependency research can proceed independently without changing the M1 implementation scope.
+M1 was locally verified and accepted by the user. PR #1 was merged into `main`. M2 implementation subsequently completed and was accepted through PR #4. This checklist is retained as the historical M1 verification guide.
