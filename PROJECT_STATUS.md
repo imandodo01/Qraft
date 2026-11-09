@@ -3,7 +3,8 @@
 **Current release target:** v1.0  
 **Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card, M5 Developer and Text Tools  
 **Active work:** M6 Integration and Release Hardening  
-**Active branch:** `feature/m6-release-hardening`
+**Active branch:** `feature/m6-release-hardening`  
+**Selected static host:** Cloudflare Pages (deployment not yet performed)
 
 ## Accepted baseline
 
@@ -43,12 +44,14 @@ The previous maintainer-reported audit recorded zero production findings and sev
 - [ ] Network, storage, DOM-sink, and dependency security review.
 - [ ] Bundle/performance review.
 - [ ] Reproducible install/build and Node.js version documentation.
-- [ ] Static host selection, deployment, direct-route/refresh, HTTPS, and security-header verification.
+- [x] Select Cloudflare Pages and document the static build configuration.
+- [ ] Deploy a preview and verify direct-route/refresh, HTTPS, MIME types, and response headers.
 - [ ] Final release documentation and defect triage.
 - [ ] User final acceptance and green CI.
 
 Implementation branch: `feature/m6-release-hardening`.  
-Verification checklist: [M6 verification guide](docs/verification/M6-VERIFICATION.md).
+Verification checklist: [M6 verification guide](docs/verification/M6-VERIFICATION.md).  
+Deployment guide: [Cloudflare Pages](docs/deployment/CLOUDFLARE-PAGES.md).
 
 ## Deferred ideas
 
