@@ -1,5 +1,6 @@
 import { findTool, searchTools, categories } from "./app/tool-registry";
 import { resolveRoute } from "./app/router";
+import { renderQrGenerator } from "./tools/qr-generator";
 import "./styles.css";
 
 function getAppRoot(): HTMLDivElement {
@@ -42,12 +43,12 @@ function renderToolCards(query = ""): string {
         <article class="tool-card">
           <div class="tool-card__topline">
             <span class="tool-category">${escapeHtml(tool.category)}</span>
-            <span class="status status--planned">Coming soon</span>
+            <span class="status ${tool.status === "available" ? "status--available" : "status--planned"}">${tool.status === "available" ? "Available" : "Coming soon"}</span>
           </div>
           <h3>${escapeHtml(tool.name)}</h3>
           <p>${escapeHtml(tool.description)}</p>
           <a class="text-link" href="#/tools/${encodeURIComponent(tool.id)}">
-            Explore tool <span aria-hidden="true">→</span>
+            ${tool.status === "available" ? "Open tool" : "Explore tool"} <span aria-hidden="true">→</span>
           </a>
         </article>
       `,
@@ -143,6 +144,11 @@ function renderToolDetail(toolId: string): void {
   const tool = findTool(toolId);
   if (!tool) {
     renderNotFound();
+    return;
+  }
+
+  if (tool.id === "qr-generator" && tool.status === "available") {
+    renderQrGenerator(app);
     return;
   }
 

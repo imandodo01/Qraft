@@ -16,7 +16,7 @@ export const tools: ToolDefinition[] = [
     description: "Create QR codes from a URL or plain text.",
     category: "QR Studio",
     keywords: ["qr", "qrcode", "url", "text", "generator"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "vcard-generator",
