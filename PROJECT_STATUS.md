@@ -1,9 +1,9 @@
 # Qraft — Project Status
 
 **Current release target:** v1.0  
-**Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio  
-**Active work:** M4 Digital Business Card implementation; local acceptance pending  
-**Active branch:** `feature/m4-business-card`
+**Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card  
+**Active work:** M5 Developer and Text Tools  
+**Active branch:** `feature/m5-developer-text-tools`
 
 ## Accepted baseline
 
@@ -62,17 +62,32 @@ Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.m
 - [x] Focused maintainer-reported XSS, network, and browser-storage checks recorded.
 - [ ] Remaining dependency and production-hosting security work is tracked for release hardening.
 
-## Active work — M4 Digital Business Card
+## Completed — M4 Digital Business Card
 
-- [x] Business-card contact fields, one landscape layout, and live preview.
-- [x] Light/dark theme and five accent choices.
-- [x] Browser-native Canvas PNG export at 1200 × 675; no new package dependency.
-- [x] VCF download and QR generation reuse existing vCard and QR services.
-- [x] Validation and vCard mapping automated tests added.
+- [x] One responsive landscape card layout with live preview.
+- [x] Light/dark theme and user-selected HEX accent color.
+- [x] Browser-native Canvas PNG export at 1200 × 675.
+- [x] VCF download and contact QR reuse existing M2/M3 services.
+- [x] QR capacity fallback preserves VCF and PNG export.
+- [x] Automated checks passed and user accepted the implementation.
+- [x] PR #7 squash-merged into `main` on 2026-11-09.
+
+Verification: [M4 verification checklist](docs/verification/M4-VERIFICATION.md). The checklist remains the reference for detailed browser evidence; acceptance does not imply unrecorded cross-browser certification. Hosted profiles and backend functionality remain out of scope.
+
+## Active work — M5 Developer and Text Tools
+
+- [x] JSON format/minify/validate logic and UI.
+- [x] UTF-8 Base64 encode/decode logic and UI.
+- [x] URI component encode/decode logic and UI.
+- [x] Secure UUID v4 generation and UI.
+- [x] Live Unicode-aware text counter.
+- [x] Common case conversions.
+- [x] Tool registry and route integration.
+- [x] Initial automated edge-case tests.
 - [ ] Run local lint, typecheck, tests, and production build.
-- [ ] Complete manual PNG, VCF import, QR scanner, responsive, keyboard, and privacy checks.
+- [ ] Complete manual clipboard, responsive, keyboard, and privacy checks.
 
-Verification: [M4 verification checklist](docs/verification/M4-VERIFICATION.md). Hosted profiles and backend functionality remain out of scope.
+Implementation: `feature/m5-developer-text-tools`.
 
 ## Deferred ideas
 
