@@ -27,7 +27,7 @@ async function copyValue(value: string): Promise<boolean> {
 }
 
 export function renderUuidGenerator(container: HTMLElement): void {
-  container.innerHTML = \`
+  container.innerHTML = `
     <main class="detail-page utility-page">
       <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>
       <a class="back-link" href="#/">← Back to all tools</a>
@@ -46,7 +46,7 @@ export function renderUuidGenerator(container: HTMLElement): void {
       </section>
       <p class="utility-privacy">● UUIDs are generated locally using the browser's secure random API.</p>
     </main>
-  \`;
+  `;
 
   const output = container.querySelector<HTMLInputElement>("#uuid-output");
   const generate = container.querySelector<HTMLButtonElement>("#uuid-generate");
