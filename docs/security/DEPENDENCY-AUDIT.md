@@ -28,7 +28,7 @@ The maintainer regenerated and pushed the lockfile. The current PR head has sinc
 - Initial mismatch: `qrcode` and `@types/qrcode` were absent from the lockfile.
 - Maintainer regenerated and committed the lockfile.
 - Local `npm ci` completed successfully.
-- GitHub Actions PR run 42574811501 passed the Install dependencies step using `npm ci`.
+- GitHub Actions PR run 42575345071 passed the Install dependencies step using `npm ci`.
 - The same CI run passed lint, typecheck, tests, and production build.
 
 The original lockfile mismatch is therefore resolved for the current PR head.
@@ -80,7 +80,7 @@ A direct override to minimatch 11.x would fall outside the declared `^10.2.2` ra
 
 ### GitHub Actions
 
-PR head `f215b2d`, workflow run **42574811501**, job **129020025157**:
+PR head `ae54123`, workflow run **42575345071**, job **129021695634**:
 
 | Step | Result |
 |---|---|
@@ -110,7 +110,7 @@ The CI run verifies the committed PR state for these steps. It does not execute 
 - [x] Critical Tinypool and Vitest/`@vitest/mocker` findings removed after targeted Vitest update.
 - [ ] Remaining minimatch moderate findings remediated or explicitly accepted with documented rationale.
 - [x] Lint, typecheck, tests, and production build pass in CI.
-- [ ] Applicable manual security/privacy checks completed.
+- [ ] Focused manual checks for XSS payload handling, unexpected network transmission, and automatic browser-storage persistence reported by maintainer as having no issues.
 - [ ] Production hosting security headers verified before public release.
 - [ ] Repository-level security settings verified.
 
@@ -121,4 +121,5 @@ The CI run verifies the committed PR state for these steps. It does not execute 
 | 2026-11-09 | `6cebe8d` | Static inventory identified manifest/lockfile mismatch. |
 | 2026-11-09 | Maintainer local branch | Lockfile repaired; clean `npm ci`; first audit found 10 findings (8 moderate, 2 critical), production audit 0. |
 | 2026-11-09 | Maintainer local branch | Vitest 5.1.0; lint, typecheck, and 33 tests passed; audit reduced to 7 moderate minimatch findings; production audit 0. |
-| 2026-11-09 | PR CI run 42574811501 | `npm ci`, lint, typecheck, tests, and production build all passed. |
+| 2026-11-09 | PR CI run 42575345071 | `npm ci`, lint, typecheck, tests, and production build all passed. |
+| 2026-11-09 | Maintainer manual browser checks | No issue reported with XSS test payloads, unexpected network transmission, or automatic storage of contact data. |
