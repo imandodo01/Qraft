@@ -116,6 +116,9 @@ export function renderVCardGenerator(container: HTMLElement): void {
   }
 
   function updatePreview(): void {
+    form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
+      input.removeAttribute("aria-invalid");
+    });
     const contact = readContact();
     const hasInput = Object.values(contact).some((value) => value.length > 0);
     const validation = validateVCardContact(contact);
@@ -124,6 +127,7 @@ export function renderVCardGenerator(container: HTMLElement): void {
     downloadButton.disabled = true;
 
     if (!validation.valid) {
+      form.querySelector<HTMLInputElement>(`input[data-field="${validation.field}"]`)?.setAttribute("aria-invalid", "true");
       preview.textContent = hasInput ? "Complete the required details to preview your contact file." : "Your contact file will appear here as you fill in the form.";
       setFeedback(hasInput ? validation.message : "", hasInput ? "error" : "");
       return;
@@ -141,6 +145,10 @@ export function renderVCardGenerator(container: HTMLElement): void {
     }
   }
 
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+
   form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
     input.addEventListener("input", updatePreview);
   });
@@ -151,6 +159,9 @@ export function renderVCardGenerator(container: HTMLElement): void {
       preview.textContent = "Your contact file will appear here as you fill in the form.";
       copyButton.disabled = true;
       downloadButton.disabled = true;
+      form.querySelectorAll<HTMLInputElement>("input[data-field]").forEach((input) => {
+        input.removeAttribute("aria-invalid");
+      });
       setFeedback("");
     }, 0);
   });
