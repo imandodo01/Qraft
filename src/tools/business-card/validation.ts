@@ -1,35 +1,42 @@
+import { normalizeWebsiteUrl } from "../vcard-generator/validation";
 import type { BusinessCardData } from "./types";
 
 export type BusinessCardValidation =
   | { valid: true }
   | { valid: false; field: keyof BusinessCardData; message: string };
 
+function hasControlCharacters(value: string): boolean {
+  return /[\\u0000-\\u001f\\u007f]/.test(value);
+}
+
 export function validateBusinessCard(data: BusinessCardData): BusinessCardValidation {
   if (!data.fullName.trim()) {
     return { valid: false, field: "fullName", message: "Enter your name to create a business card." };
   }
 
-  if (/[\\u0000-\\u001f\\u007f]/.test(data.fullName)) {
-    return { valid: false, field: "fullName", message: "Name cannot contain control characters." };
+  const textFields: Array<keyof Pick<BusinessCardData, "fullName" | "jobTitle" | "organization" | "tagline">> = [
+    "fullName",
+    "jobTitle",
+    "organization",
+    "tagline",
+  ];
+  for (const field of textFields) {
+    if (hasControlCharacters(data[field])) {
+      return { valid: false, field, message: "Remove control characters from this field." };
+    }
   }
 
-  if (data.email.trim() && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(data.email.trim())) {
+  if (data.email.trim() && (hasControlCharacters(data.email) || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(data.email.trim()))) {
     return { valid: false, field: "email", message: "Enter a valid email address." };
   }
 
-  if (/[\\u0000-\\u001f\\u007f]/.test(data.phone)) {
+  if (hasControlCharacters(data.phone)) {
     return { valid: false, field: "phone", message: "Phone cannot contain line breaks or control characters." };
   }
 
   if (data.website.trim()) {
     try {
-      const candidate = /^https?:\\/\\//i.test(data.website.trim())
-        ? data.website.trim()
-        : `https://${data.website.trim()}`;
-      const url = new URL(candidate);
-      if (!["http:", "https:"].includes(url.protocol) || !url.hostname || /\\s/.test(data.website.trim())) {
-        throw new TypeError();
-      }
+      normalizeWebsiteUrl(data.website);
     } catch {
       return { valid: false, field: "website", message: "Enter a valid website domain or HTTP/HTTPS URL." };
     }
