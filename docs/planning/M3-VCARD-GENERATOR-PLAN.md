@@ -6,7 +6,7 @@
 
 ## 1. Goal
 
-Let a user enter common contact details, preview the resulting contact record, and download a standards-based `.vcf` file that can be imported into common address books.
+Let a user enter common contact details, preview the resulting contact record, download a vCard `.vcf` file, and share the same contact data as a QR code.
 
 No account, backend, or remote processing is required.
 
@@ -29,6 +29,8 @@ No account, backend, or remote processing is required.
 - Download as `contact.vcf`.
 - Copy vCard text.
 - Clear/reset form.
+- Generate a QR code from the exact serialized vCard payload and download it as PNG.
+- Keep VCF export available when the contact payload exceeds QR capacity; never truncate contact data.
 - Validation for required name, malformed email values, and malformed website URLs.
 - Reject control characters in single-line email and phone values to prevent property injection.
 - Preserve entered data when validation or export fails.
@@ -55,6 +57,8 @@ Reference: [RFC 2426 — vCard 3.0](https://www.rfc-editor.org/rfc/rfc2426).
 - Single-column form on mobile; form and preview may sit side by side on wider screens.
 - Clear field labels and examples.
 - Preview section showing the serialized vCard.
+- QR preview and PNG download using the same serialized vCard text as the QR payload.
+- Explain that scanner behavior varies: some devices offer contact import while others display the raw vCard text.
 - Primary Download VCF action.
 - Secondary Copy vCard action.
 - Clear/reset action.
@@ -84,6 +88,9 @@ Keep serialization as a pure function receiving typed contact data and returning
 - [x] Long lines are folded without corrupting UTF-8 characters.
 - [x] Output has required VCARD envelope and version.
 - [ ] Downloaded `.vcf` opens/imports in at least two available contact applications or independent vCard validators.
+- [x] QR payload is the exact serialized vCard text; no separate or shortened contact representation is generated.
+- [x] QR capacity errors are surfaced without truncating or disabling VCF export.
+- [ ] Downloaded contact QR PNG scans to the complete vCard text in an independent scanner.
 - [ ] Copy action copies the exact preview text.
 - [ ] Invalid website URL receives useful feedback.
 - [ ] Contact data is not transmitted or silently persisted.
@@ -96,7 +103,6 @@ Record the contact applications used during manual verification. Do not claim un
 
 - vCard import/viewer.
 - Multiple contacts and batch VCF.
-- QR generation (provided by M2; business-card QR composition belongs to M4).
 - Contact sync, cloud storage, and account features.
 - Advanced vCard properties and localization.
 
@@ -106,6 +112,7 @@ Record the contact applications used during manual verification. Do not claim un
 2. Implement typed contact data and validation.
 3. Implement and unit-test pure vCard 3.0 serialization.
 4. Add preview, copy, and download UI.
-5. Verify imports with independent contact applications.
-6. Update tool registry, docs, and changelog.
-7. Open PR and pass the milestone acceptance gate.
+5. Generate a QR code from the same serialized vCard and handle QR capacity errors without truncation.
+6. Verify VCF imports and QR scanning with independent applications.
+7. Update tool registry, docs, and changelog.
+8. Open PR and pass the milestone acceptance gate.
