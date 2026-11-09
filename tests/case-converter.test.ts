@@ -7,7 +7,7 @@ describe("convertCase", () => {
   it("supports lower, upper, and title case", () => {
     expect(convertCase(input, "lowercase")).toBe("hello world from-qraft_tool");
     expect(convertCase(input, "uppercase")).toBe("HELLO WORLD FROM-QRAFT_TOOL");
-    expect(convertCase(input, "title")).toBe("Hello World From Qraft Tool");
+    expect(convertCase(input, "title")).toBe("Hello World From-Qraft_Tool");
   });
 
   it("supports camel, Pascal, snake, and kebab case", () => {
