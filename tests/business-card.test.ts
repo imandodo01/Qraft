@@ -4,6 +4,15 @@ import { validateBusinessCard } from "../src/tools/business-card/validation";
 import { serializeVCard } from "../src/tools/vcard-generator/serializer";
 
 describe("validateBusinessCard", () => {
+  it("uses a valid default accent color", () => {
+    expect(createEmptyBusinessCard().accent).toMatch(/^#[0-9a-fA-F]{6}$/);
+  });
+
+  it("rejects invalid accent color values", () => {
+    const base = { ...createEmptyBusinessCard(), fullName: "Ada Lovelace" };
+    expect(validateBusinessCard({ ...base, accent: "red" })).toMatchObject({ valid: false, field: "accent" });
+  });
+
   it("requires a full name", () => {
     expect(validateBusinessCard(createEmptyBusinessCard())).toMatchObject({
       valid: false,
