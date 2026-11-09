@@ -9,8 +9,9 @@
 - [x] Initial v1.0 feature scope.
 - [x] Architecture and quality direction.
 - [x] Design direction and development conventions.
+- [x] Quality and architecture review with accepted/deferred/rejected decisions ([review](planning/QUALITY-ARCHITECTURE-REVIEW.md)).
 
-**Exit criteria:** Product scope and technical direction are documented.
+**Exit criteria:** Product scope, technical direction, and quality decisions are documented.
 
 ## M1 — Application foundation
 
@@ -92,14 +93,16 @@ Verification: [M1 verification guide](../blob/feature/m1-foundation/docs/verific
 **Implementation branch:** `feature/m6-release-hardening`
 
 - [ ] Full regression testing across all v1.0 tools.
-- [ ] Responsive and keyboard accessibility review.
+- [ ] Cross-browser export verification with tested versions recorded.
+- [ ] Responsive, keyboard, and accessibility review.
 - [ ] Privacy and browser-network review.
-- [ ] Performance and bundle review.
+- [ ] Performance and production bundle review.
+- [ ] Reproducible clean install and production build using the committed lockfile and documented Node.js version.
 - [ ] Verify static hosting and direct-route behavior.
 - [ ] Complete README, changelog, and deployment instructions.
 - [ ] Resolve all release-blocking defects.
 
-**Exit criteria:** All v1.0 acceptance criteria pass on a production build.
+**Exit criteria:** All v1.0 acceptance criteria pass on a production build, including real export checks, privacy review, and browser acceptance.
 
 ## v1.0 minimum feature commitment
 
@@ -125,3 +128,4 @@ Everything else is post-v1.0 unless explicitly approved as a scope change.
 - Do not merge an implementation milestone until automated and user acceptance checks pass.
 - Update this roadmap and `PROJECT_STATUS.md` as milestones progress.
 - Ideas discovered during implementation go to a backlog; they do not silently expand the active milestone.
+- Apply the [Quality and Architecture Review](planning/QUALITY-ARCHITECTURE-REVIEW.md) to milestone plans and release acceptance without expanding the v1.0 feature commitment.
