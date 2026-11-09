@@ -1,7 +1,7 @@
 import { countText } from "./logic";
 
 export function renderTextCounter(container: HTMLElement): void {
-  container.innerHTML = \`
+  container.innerHTML = `
     <main class="detail-page utility-page">
       <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>
       <a class="back-link" href="#/">← Back to all tools</a>
@@ -21,7 +21,7 @@ export function renderTextCounter(container: HTMLElement): void {
       </section>
       <p class="utility-privacy">● Text is counted locally and is not saved.</p>
     </main>
-  \`;
+  `;
 
   const input = container.querySelector<HTMLTextAreaElement>("#text-counter-input");
   const characters = container.querySelector<HTMLElement>("#text-count-characters");
