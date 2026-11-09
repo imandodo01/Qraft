@@ -20,7 +20,7 @@ export function countText(input: string): TextCounts {
   const Segmenter = (Intl as unknown as { Segmenter?: SegmenterConstructor }).Segmenter;
   const words = Segmenter
     ? Array.from(new Segmenter(undefined, { granularity: "word" }).segment(input)).filter((part) => part.isWordLike).length
-    : input.match(/[\\p{L}\\p{N}]+(?:['’][\\p{L}\\p{N}]+)*/gu)?.length ?? 0;
-  const lines = input.split(/\\r\\n|\\r|\\n/).length;
+    : input.match(/[\p{L}\p{N}]+(?:['’][\p{L}\p{N}]+)*/gu)?.length ?? 0;
+  const lines = input.split(/\r\n|\r|\n/).length;
   return { characters, words, lines };
 }
