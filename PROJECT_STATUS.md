@@ -64,27 +64,12 @@ Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.m
 
 ## Active work — M4 Digital Business Card
 
-- [x] Add `SECURITY.md` policy and reporting guidance.
-- [x] Add `THREAT-MODEL.md` for the current local-first architecture.
-- [x] Add `SECURITY-VERIFICATION.md` based on relevant ASVS 5.0.0 topics.
-- [x] Add dependency audit inventory and findings.
-- [x] Repair package manifest/lockfile mismatch; local `npm ci` succeeded.
-- [x] Run current npm vulnerability audit; production audit is clean, seven moderate minimatch findings remain under review.
-- [ ] Complete applicable manual security/privacy checks.
-- [ ] Verify production hosting security headers before public release.
-
-See [Security Baseline](SECURITY-VERIFICATION.md) and [Dependency Audit](docs/security/DEPENDENCY-AUDIT.md).
-
-## Next milestone — M4 Digital Business Card
-
-Preparation: [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md).
-
 - [x] Business-card contact fields, one landscape layout, and live preview.
 - [x] Light/dark theme and five accent choices.
-- [x] Browser-native PNG export at 1200 × 675; no new package dependency.
+- [x] Browser-native Canvas PNG export at 1200 × 675; no new package dependency.
 - [x] VCF download and QR generation reuse existing vCard and QR services.
 - [x] Validation and vCard mapping automated tests added.
-- [ ] Run local lint, typecheck, test, and production build.
+- [ ] Run local lint, typecheck, tests, and production build.
 - [ ] Complete manual PNG, VCF import, QR scanner, responsive, keyboard, and privacy checks.
 
 Verification: [M4 verification checklist](docs/verification/M4-VERIFICATION.md). Hosted profiles and backend functionality remain out of scope.
