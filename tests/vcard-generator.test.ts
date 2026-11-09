@@ -17,7 +17,7 @@ describe("validateVCardContact", () => {
     const contact = { ...createEmptyContact(), formattedName: "Ada Lovelace", website: "example.com" };
     expect(validateVCardContact(contact)).toEqual({ valid: true });
 
-    for (const website of ["http://example.com", "https://example.com/path"]) {
+    for (const website of ["http://example.com", "https://example.com/path", "example.com:8443/profile"]) {
       expect(validateVCardContact({ ...contact, website })).toEqual({ valid: true });
     }
   });
