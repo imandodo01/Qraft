@@ -76,8 +76,8 @@ Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.m
 - [x] Add architecture-based threat model.
 - [x] Add ASVS-oriented security verification checklist.
 - [x] Record dependency inventory and lockfile mismatch.
-- [ ] Regenerate and verify the dependency lockfile.
-- [ ] Run and review current npm vulnerability audits.
+- [x] Regenerate the dependency lockfile and verify a local clean install.
+- [x] Run and review current npm vulnerability audits; production audit is clean and remaining minimatch findings are documented.
 - [ ] Complete relevant manual security and privacy checks.
 - [ ] Verify production hosting headers before public release.
 
