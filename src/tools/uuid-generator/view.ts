@@ -27,26 +27,26 @@ async function copyValue(value: string): Promise<boolean> {
 }
 
 export function renderUuidGenerator(container: HTMLElement): void {
-  container.innerHTML = `
-    <main class="detail-page utility-page">
-      <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>
-      <a class="back-link" href="#/">← Back to all tools</a>
-      <header class="utility-intro">
-        <p class="eyebrow">DEVELOPER TOOLS</p><h1>UUID Generator</h1>
-        <p class="detail-description">Generate a cryptographically random UUID version 4 in your browser.</p>
-      </header>
-      <section class="utility-panel utility-panel--single" aria-label="UUID Generator workspace">
-        <label class="utility-label" for="uuid-output">UUID v4</label>
-        <input class="utility-input utility-input--uuid" id="uuid-output" type="text" readonly spellcheck="false" placeholder="Generate a UUID…" />
-        <div class="utility-actions">
-          <button class="utility-button utility-button--primary" id="uuid-generate" type="button">Generate UUID</button>
-          <button class="utility-button utility-button--secondary" id="uuid-copy" type="button" disabled>Copy</button>
-        </div>
-        <p class="utility-feedback" id="uuid-feedback" role="status" aria-live="polite"></p>
-      </section>
-      <p class="utility-privacy">● UUIDs are generated locally using the browser's secure random API.</p>
-    </main>
-  `;
+  container.innerHTML = [
+    '<main class="detail-page utility-page">',
+    '  <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>',
+    '  <a class="back-link" href="#/">← Back to all tools</a>',
+    '  <header class="utility-intro">',
+    '    <p class="eyebrow">DEVELOPER TOOLS</p><h1>UUID Generator</h1>',
+    '    <p class="detail-description">Generate a cryptographically random UUID version 4 in your browser.</p>',
+    '  </header>',
+    '  <section class="utility-panel utility-panel--single" aria-label="UUID Generator workspace">',
+    '    <label class="utility-label" for="uuid-output">UUID v4</label>',
+    '    <input class="utility-input utility-input--uuid" id="uuid-output" type="text" readonly spellcheck="false" placeholder="Generate a UUID…" />',
+    '    <div class="utility-actions">',
+    '      <button class="utility-button utility-button--primary" id="uuid-generate" type="button">Generate UUID</button>',
+    '      <button class="utility-button utility-button--secondary" id="uuid-copy" type="button" disabled>Copy</button>',
+    '    </div>',
+    '    <p class="utility-feedback" id="uuid-feedback" role="status" aria-live="polite"></p>',
+    '  </section>',
+    '  <p class="utility-privacy">UUIDs are generated locally using the browser secure random API.</p>',
+    '</main>',
+  ].join("");
 
   const output = container.querySelector<HTMLInputElement>("#uuid-output");
   const generate = container.querySelector<HTMLButtonElement>("#uuid-generate");
