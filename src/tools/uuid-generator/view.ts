@@ -1,13 +1,33 @@
-import { generateUuidV4 } from "./index";
+import { generateUuidV4 } from "./logic";
 
-function copyValue(value: string): boolean {
-  if (!navigator.clipboard?.writeText) return false;
-  void navigator.clipboard.writeText(value).catch(() => undefined);
-  return true;
+async function copyValue(value: string): Promise<boolean> {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(value);
+      return true;
+    } catch {
+      // Fall through to the legacy browser copy path.
+    }
+  }
+  const temporary = document.createElement("textarea");
+  temporary.value = value;
+  temporary.setAttribute("readonly", "");
+  temporary.style.position = "fixed";
+  temporary.style.opacity = "0";
+  document.body.append(temporary);
+  temporary.select();
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch {
+    copied = false;
+  }
+  temporary.remove();
+  return copied;
 }
 
 export function renderUuidGenerator(container: HTMLElement): void {
-  container.innerHTML = `
+  container.innerHTML = \`
     <main class="detail-page utility-page">
       <a class="brand" href="#/"><span class="brand__mark">Q</span><span>qraft<span class="brand__dot">.</span></span></a>
       <a class="back-link" href="#/">← Back to all tools</a>
@@ -26,7 +46,7 @@ export function renderUuidGenerator(container: HTMLElement): void {
       </section>
       <p class="utility-privacy">● UUIDs are generated locally using the browser's secure random API.</p>
     </main>
-  `;
+  \`;
 
   const output = container.querySelector<HTMLInputElement>("#uuid-output");
   const generate = container.querySelector<HTMLButtonElement>("#uuid-generate");
@@ -48,12 +68,9 @@ export function renderUuidGenerator(container: HTMLElement): void {
 
   copy.addEventListener("click", () => {
     if (!output.value) return;
-    if (!copyValue(output.value)) {
-      feedback.textContent = "Clipboard access is unavailable in this browser.";
-      feedback.dataset.state = "error";
-      return;
-    }
-    feedback.textContent = "UUID copied to clipboard.";
-    feedback.dataset.state = "success";
+    void copyValue(output.value).then((copied) => {
+      feedback.textContent = copied ? "UUID copied to clipboard." : "Clipboard access is unavailable in this browser.";
+      feedback.dataset.state = copied ? "success" : "error";
+    });
   });
 }
