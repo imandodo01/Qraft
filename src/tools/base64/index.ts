@@ -10,7 +10,7 @@ export function encodeBase64Utf8(input: string): string {
 }
 
 export function decodeBase64Utf8(input: string): string {
-  const normalized = input.replace(/[\\t\\n\\f\\r ]/g, "");
+  const normalized = input.replace(/[\t\n\f\r ]/g, "");
   if (!normalized) return "";
   if (normalized.length % 4 !== 0 || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(normalized)) {
     throw new TypeError("Enter valid Base64 text with correct padding.");
