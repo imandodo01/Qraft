@@ -59,6 +59,12 @@ npm test
 npm run build
 ```
 
+## Deployment
+
+Cloudflare Pages is the selected static-hosting target for Qraft v1.0. The repository is prepared for a Vite production build, but a Cloudflare account connection and production deployment have not yet been performed.
+
+See the [Cloudflare Pages deployment guide](docs/deployment/CLOUDFLARE-PAGES.md) for build settings, preview deployments, custom domains, and verification steps.
+
 ## Documentation
 
 - [Product specification](PRODUCT_SPEC.md)
