@@ -10,6 +10,10 @@ function hasControlCharacters(value: string): boolean {
 }
 
 export function validateBusinessCard(data: BusinessCardData): BusinessCardValidation {
+  if (!/^#[0-9a-fA-F]{6}$/.test(data.accent)) {
+    return { valid: false, field: "accent", message: "Choose a valid accent color." };
+  }
+
   if (!data.fullName.trim()) {
     return { valid: false, field: "fullName", message: "Enter your name to create a business card." };
   }
