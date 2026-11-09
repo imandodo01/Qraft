@@ -1,6 +1,7 @@
-import { findTool, searchTools, categories } from "./app/tool-registry";
+import { findTool, searchTools, categories, tools } from "./app/tool-registry";
 import { resolveRoute } from "./app/router";
 import { renderQrGenerator } from "./tools/qr-generator";
+import { renderVCardGenerator } from "./tools/vcard-generator";
 import "./styles.css";
 
 function getAppRoot(): HTMLDivElement {
@@ -57,6 +58,8 @@ function renderToolCards(query = ""): string {
 }
 
 function renderHome(): void {
+  const availableCount = tools.filter((tool) => tool.status === "available").length;
+
   app.innerHTML = `
     <div class="app-layout">
       <aside class="sidebar" aria-label="Main navigation">
@@ -102,7 +105,7 @@ function renderHome(): void {
             <input id="tool-search" type="search" placeholder="Search tools, e.g. QR, JSON, Base64..." autocomplete="off" />
             <kbd>/</kbd>
           </label>
-          <div class="hero__meta"><span>9 tools planned</span><span>·</span><span>4 categories</span></div>
+          <div class="hero__meta"><span>${tools.length} tools</span><span>·</span><span>${availableCount} available</span><span>·</span><span>${categories.length} categories</span></div>
         </section>
 
         <section class="tools-section" aria-labelledby="tools-heading">
@@ -149,6 +152,11 @@ function renderToolDetail(toolId: string): void {
 
   if (tool.id === "qr-generator" && tool.status === "available") {
     renderQrGenerator(app);
+    return;
+  }
+
+  if (tool.id === "vcard-generator" && tool.status === "available") {
+    renderVCardGenerator(app);
     return;
   }
 

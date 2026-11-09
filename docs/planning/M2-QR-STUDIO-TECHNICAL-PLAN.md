@@ -1,6 +1,6 @@
 # M2 — QR Studio Technical Preparation
 
-**Document status:** Implementation in progress; see [PR #4](https://github.com/imandodo01/Qraft/pull/4)  
+**Document status:** Accepted; [PR #4](https://github.com/imandodo01/Qraft/pull/4) merged after CI and user verification.  
 **Milestone:** M2 — QR Studio  
 **Preparation branch:** `docs/m2-qr-studio-prep`  
 **Implementation branch (when unblocked):** `feature/m2-qr-studio`  
@@ -237,19 +237,19 @@ Do not use the same QR library to generate and independently validate its own ou
 
 M2 is complete only when all of the following pass:
 
-- [ ] QR Generator is reachable from Qraft navigation and tool discovery.
-- [ ] URL and plain-text modes work.
-- [ ] URL validation accepts HTTP/HTTPS and rejects malformed or unsupported schemes.
-- [ ] Empty and whitespace-only inputs do not produce a QR.
-- [ ] Valid input produces a preview without a backend request.
-- [ ] Preview updates when valid input changes; stale preview is not misrepresented.
-- [ ] PNG download works and produces a valid image.
-- [ ] Downloaded PNG decodes to the exact input using independent scanners.
-- [ ] Unicode content is preserved.
-- [ ] Capacity errors are understandable and do not crash the app.
-- [ ] Automated tests, lint, typecheck, and production build pass.
-- [ ] Responsive and keyboard-accessibility checks pass.
-- [ ] Documentation and project status are updated.
+- [x] QR Generator is reachable from Qraft navigation and tool discovery.
+- [x] URL and plain-text modes work.
+- [x] URL validation accepts HTTP/HTTPS and rejects malformed or unsupported schemes.
+- [x] Empty and whitespace-only inputs do not produce a QR.
+- [x] Valid input produces a preview without a backend request.
+- [x] Preview updates when valid input changes; stale preview is not misrepresented.
+- [x] PNG download works and produces a valid image.
+- [x] Downloaded PNG decodes to the exact input using independent scanners.
+- [x] Unicode content is preserved.
+- [x] Capacity errors are understandable and do not crash the app.
+- [x] Automated tests, lint, typecheck, and production build pass.
+- [x] Responsive and keyboard-accessibility checks pass.
+- [x] Documentation and project status are updated.
 
 ## 9. Suggested implementation sequence
 
@@ -279,6 +279,6 @@ M2 is complete only when all of the following pass:
 
 ## 11. M2 readiness
 
-M1 has been accepted and merged. M2 implementation is underway in [PR #4](https://github.com/imandodo01/Qraft/pull/4); implementation and user acceptance checks remain pending.
+M1 and M2 have been accepted and merged. M2 implementation in [PR #4](https://github.com/imandodo01/Qraft/pull/4) passed CI and user-reported local and manual verification. See [M2 verification record](../verification/M2-VERIFICATION.md).
 
-This document remains the technical reference for M2 scope and acceptance. Do not treat the implementation PR as accepted until its automated and manual verification gates pass.
+This document remains the technical record of M2's original scope and decisions. Deferred QR enhancements are tracked in the [feature backlog](../backlog/FEATURE-BACKLOG.md).

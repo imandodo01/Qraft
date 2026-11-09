@@ -27,7 +27,15 @@ describe("tool registry", () => {
 
   it("finds a tool by its stable identifier", () => {
     expect(findTool("qr-generator")?.name).toBe("QR Generator");
+    expect(findTool("vcard-generator")?.name).toBe("vCard Generator");
     expect(findTool("missing-tool")).toBeUndefined();
+  });
+
+  it("marks only the implemented v1 tools as available", () => {
+    expect(tools.filter((tool) => tool.status === "available").map((tool) => tool.id)).toEqual([
+      "qr-generator",
+      "vcard-generator",
+    ]);
   });
 
   it("searches names, descriptions, categories, and keywords", () => {

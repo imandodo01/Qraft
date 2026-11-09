@@ -24,7 +24,7 @@ export const tools: ToolDefinition[] = [
     description: "Create downloadable digital contact cards.",
     category: "Contact Studio",
     keywords: ["contact", "vcard", "vcf", "address book"],
-    status: "planned",
+    status: "available",
   },
   {
     id: "business-card",

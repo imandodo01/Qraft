@@ -9,7 +9,7 @@
 - [x] Initial v1.0 feature scope.
 - [x] Architecture and quality direction.
 - [x] Design direction and development conventions.
-- [x] Quality and architecture review with accepted/deferred/rejected decisions ([review](planning/QUALITY-ARCHITECTURE-REVIEW.md)).
+- [x] Quality and architecture review with accepted/deferred/rejected decisions ([review](docs/planning/QUALITY-ARCHITECTURE-REVIEW.md)).
 
 **Exit criteria:** Product scope, technical direction, and quality decisions are documented.
 
@@ -35,21 +35,26 @@ Verification record: [M1 verification guide](docs/verification/M1-VERIFICATION.m
 
 ## M2 — QR Studio
 
-**Preparation:** [M2 QR Studio technical plan](planning/M2-QR-STUDIO-TECHNICAL-PLAN.md)  
-**Implementation:** PR #4 on `feature/m2-qr-studio`; acceptance pending.
+**Preparation:** [M2 QR Studio technical plan](docs/planning/M2-QR-STUDIO-TECHNICAL-PLAN.md)  
+**Implementation:** [PR #4](https://github.com/imandodo01/Qraft/pull/4) on `feature/m2-qr-studio`.  
+**Status:** Completed; PR #4 merged after CI, local automated checks, and user manual verification.
 
-- [ ] Generate QR codes from URL and plain text.
-- [ ] Local browser-side generation and live preview.
-- [ ] URL/input validation and useful errors.
-- [ ] PNG export.
-- [ ] Unicode and independent scanner verification.
+- [x] Generate QR codes from URL and plain text.
+- [x] Local browser-side generation and live preview.
+- [x] URL/input validation and useful errors.
+- [x] PNG export.
+- [x] Unicode and independent scanner verification.
+- [x] Responsive, keyboard, and privacy checks.
+
+Verification record: [M2 verification guide](docs/verification/M2-VERIFICATION.md).
 
 **Exit criteria:** Downloaded PNG decodes to the exact intended payload using independent QR readers.
 
 ## M3 — Contact Studio: vCard Generator
 
-**Preparation:** [M3 vCard Generator plan](planning/M3-VCARD-GENERATOR-PLAN.md)  
-**Implementation branch after M2:** `feature/m3-vcard-generator`
+**Preparation:** [M3 vCard Generator plan](docs/planning/M3-VCARD-GENERATOR-PLAN.md)  
+**Implementation:** `feature/m3-vcard-generator`  
+**Status:** In progress.
 
 - [ ] Common contact fields and validation.
 - [ ] vCard 3.0 serialization.
@@ -61,7 +66,7 @@ Verification record: [M1 verification guide](docs/verification/M1-VERIFICATION.m
 
 ## M4 — Digital Business Card
 
-**Preparation:** [M4 Business Card plan](planning/M4-BUSINESS-CARD-PLAN.md)  
+**Preparation:** [M4 Business Card plan](docs/planning/M4-BUSINESS-CARD-PLAN.md)  
 **Implementation branch after M3:** `feature/m4-business-card`
 
 - [ ] Contact details and one polished card layout.
@@ -75,7 +80,7 @@ Verification record: [M1 verification guide](docs/verification/M1-VERIFICATION.m
 
 ## M5 — Developer and Text Tools
 
-**Preparation:** [M5 Developer and Text Tools plan](planning/M5-DEVELOPER-TEXT-TOOLS-PLAN.md)  
+**Preparation:** [M5 Developer and Text Tools plan](docs/planning/M5-DEVELOPER-TEXT-TOOLS-PLAN.md)  
 **Implementation branch after M4:** `feature/m5-developer-text-tools`
 
 - [ ] JSON formatter / validator.
@@ -118,7 +123,7 @@ The initial release is limited to these nine tools:
 8. Text Counter — characters, words, lines.
 9. Case Converter — common case formats.
 
-Everything else is post-v1.0 unless explicitly approved as a scope change.
+Everything else is post-v1.0 unless explicitly approved as a scope change. See the [feature backlog](docs/backlog/FEATURE-BACKLOG.md) for deferred ideas.
 
 ## Workflow and scope control
 
