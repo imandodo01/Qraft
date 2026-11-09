@@ -1,4 +1,4 @@
-import { validateVCardContact } from "./validation";
+import { normalizeWebsiteUrl, validateVCardContact } from "./validation";
 import type { VCardContact } from "./types";
 
 const encoder = new TextEncoder();
@@ -75,7 +75,7 @@ export function serializeVCard(contact: VCardContact): string {
   }
 
   if (isPresent(contact.website)) {
-    lines.push(`URL:${contact.website}`);
+    lines.push(`URL:${normalizeWebsiteUrl(contact.website)}`);
   }
 
   lines.push("END:VCARD");
