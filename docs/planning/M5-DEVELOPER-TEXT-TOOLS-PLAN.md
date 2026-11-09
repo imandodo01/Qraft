@@ -86,7 +86,7 @@ src/components/
 
 Keep pure transformation functions separate from DOM rendering. Do not introduce a global state manager.
 
-## 5. Test and acceptance criteria
+Verification checklist: [M5 verification guide](../verification/M5-VERIFICATION.md).\n\n## 5. Test and acceptance criteria
 
 ### JSON
 - [ ] Valid nested JSON formats and minifies.
