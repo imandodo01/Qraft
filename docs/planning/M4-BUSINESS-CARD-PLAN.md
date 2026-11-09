@@ -24,7 +24,7 @@ This is a client-side card designer, not a hosted public profile service.
 ### Design
 - One polished, responsive card layout to keep scope small.
 - A small set of safe theme choices (for example, light and dark).
-- Basic accent color selection.
+- User-selectable accent color through a native color picker (HEX color).
 - Clear typography and spacing defaults.
 - Live preview.
 - No arbitrary drag-and-drop positioning, front/back printing, or template marketplace.
