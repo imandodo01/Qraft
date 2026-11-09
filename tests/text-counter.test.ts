@@ -7,7 +7,7 @@ describe("countText", () => {
   });
 
   it("counts Unicode code points, words, and newline-separated lines", () => {
-    expect(countText("Halo 👋 dunia\r\nQraft")).toEqual({ characters: 17, words: 3, lines: 2 });
+    expect(countText("Halo 👋 dunia\r\nQraft")).toEqual({ characters: 19, words: 3, lines: 2 });
   });
 
   it("handles whitespace-only input and repeated line breaks", () => {
