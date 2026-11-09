@@ -61,8 +61,8 @@ Verification record: [M3 verification guide](docs/verification/M3-VERIFICATION.m
 - [x] Add `THREAT-MODEL.md` for the current local-first architecture.
 - [x] Add `SECURITY-VERIFICATION.md` based on relevant ASVS 5.0.0 topics.
 - [x] Add dependency audit inventory and findings.
-- [ ] Repair package manifest/lockfile mismatch.
-- [ ] Run current npm vulnerability audit and review findings.
+- [x] Repair package manifest/lockfile mismatch; local `npm ci` succeeded.
+- [x] Run current npm vulnerability audit; production audit is clean, seven moderate minimatch findings remain under review.
 - [ ] Complete applicable manual security/privacy checks.
 - [ ] Verify production hosting security headers before public release.
 
