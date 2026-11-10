@@ -2,6 +2,8 @@
 
 This backlog records useful ideas that are not part of the committed v1.0 scope. Entries are candidates for future prioritization, not delivery commitments.
 
+**Current disposition:** Qraft v1.0.0 was released on 2026-11-10. Further feature development is paused. No v1.1.0 scope, priority order, or delivery date has been approved.
+
 ## QR Studio
 
 ### Content presets
@@ -47,4 +49,10 @@ This backlog records useful ideas that are not part of the committed v1.0 scope.
 
 ## Prioritization
 
-Evaluate candidates by user value, implementation cost, maintenance burden, privacy implications, and whether they improve the core local-first toolbox. Do not expand the nine-tool v1.0 commitment without an explicit scope decision.
+When development resumes, evaluate candidates by user value, implementation cost, maintenance burden, privacy implications, and whether they improve the core local-first toolbox. Do not assume the order in which ideas appear here represents priority. Do not expand the nine-tool v1.0 commitment without an explicit scope decision.
+
+## Release and security follow-up
+
+- Reassess the seven moderate development-only minimatch findings documented for v1.0.0; pursue remediation when a compatible upstream fix is available.
+- Revisit repository branch-protection enforcement after migration to a GitHub Team/Organization account.
+- Define any future release scope and acceptance criteria before implementation begins.
