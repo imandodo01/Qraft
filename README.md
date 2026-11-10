@@ -6,7 +6,7 @@ Qraft is a lightweight, browser-based collection of practical tools for creating
 
 > Project status: v1.0 release hardening (M6)  
 > Completed: M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card, M5 Developer and Text Tools  
-> Active work: M6 Integration and Release Hardening
+> Active work: final M6 release acceptance
 
 ## Product principles
 
@@ -61,9 +61,9 @@ npm run build
 
 ## Deployment
 
-Cloudflare Pages is the selected static-hosting target for Qraft v1.0. The repository is prepared for a Vite production build, but a Cloudflare account connection and production deployment have not yet been performed.
+Qraft is deployed on Cloudflare Pages: [https://qraft-9y9.pages.dev/](https://qraft-9y9.pages.dev/).
 
-See the [Cloudflare Pages deployment guide](docs/deployment/CLOUDFLARE-PAGES.md) for build settings, preview deployments, custom domains, and verification steps.
+Build settings: `npm run build`, output directory `dist`, root directory `/`. The deployed Pages URL was checked by the maintainer on 2026-11-10; HTTPS and the configured security response headers were present. See the [Cloudflare Pages deployment guide](docs/deployment/CLOUDFLARE-PAGES.md).
 
 ## Documentation
 

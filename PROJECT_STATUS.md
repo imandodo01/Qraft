@@ -1,10 +1,10 @@
 # Qraft — Project Status
 
-**Current release target:** v1.0  
+**Current release target:** v1.0.0  
 **Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card, M5 Developer and Text Tools  
 **Active work:** M6 Integration and Release Hardening  
-**Active branch:** `feature/m6-release-hardening`  
-**Selected static host:** Cloudflare Pages (deployment not yet performed)
+**Active documentation branch:** `docs/m6-final-acceptance`  
+**Static host:** Cloudflare Pages — deployed at https://qraft-9y9.pages.dev/
 
 ## Accepted baseline
 
@@ -22,46 +22,38 @@
 | M4 — Digital Business Card | Responsive card, themes/accent, 1200 × 675 PNG, VCF, embedded contact QR | PR #7 |
 | M5 — Developer and Text Tools | JSON, UTF-8 Base64, URI component, UUID v4, text counter, case converter | PR #8 |
 
-M3, M4, and M5 were merged into `main` on 2026-11-09. M4 and M5 were squash-merged. See each [verification guide](docs/verification/) for the recorded evidence and limits. Completion of a milestone does not imply unrecorded cross-browser, security, or deployment tests.
+## M6 — Release hardening evidence
 
-## Security baseline
+| Area | Current result |
+|---|---|
+| Cloudflare Pages deployment | Deployed and accessible at the Pages URL |
+| Nine-tool functional check | User-reported pass |
+| Local clean install | `npm ci` passed |
+| Lint / TypeScript | Both passed locally |
+| Automated tests | 63 tests across 11 files passed |
+| Production build | Passed; JS 75.15 KB (23.43 KB gzip), CSS 22.13 KB (4.44 KB gzip) |
+| Production dependency audit | 0 vulnerabilities |
+| Full dependency audit | 7 moderate findings in development dependency path through `typescript-eslint → typescript-estree → minimatch@10.2.6`; disposition recorded as residual risk |
+| HTTPS and response headers | Verified by maintainer using `curl.exe -I` against the deployed Pages URL |
+| Privacy / storage / console | User-reported manual checks passed in tested Chrome session; extension-related console error absent in Incognito |
+| Responsive / accessibility | User-reported manual review acceptable; detailed browser/version matrix not recorded |
 
-- [x] Security policy, threat model, and verification checklist added.
-- [x] Lockfile consistency and clean install recorded.
-- [x] Focused maintainer-reported XSS, network, and browser-storage checks recorded for tested QR/vCard flows.
-- [ ] Remaining dependency advisories reviewed and disposition recorded.
-- [ ] Production HTTPS and response headers verified on the selected host.
-- [ ] Repository-level security settings verified where access permits.
+The seven moderate audit findings are associated with the same minimatch advisory family, not seven independently established root causes. The vulnerable package is in development tooling; `npm audit --omit=dev` reports zero. An override to minimatch 11.x was not applied because the upstream TypeScript ESLint dependency currently declares `^10.2.2`, and compatibility has not been established. Revisit when upstream publishes a compatible fix. This is not a clean full audit.
 
-The previous maintainer-reported audit recorded zero production findings and seven moderate development dependency findings through the TypeScript ESLint dependency path. Re-run the audit during M6; do not assume the old result is current.
+## Remaining release gates
 
-## Active — M6 Integration and Release Hardening
+- [ ] Record the exact local Node.js/npm versions and confirm lockfile unchanged after `npm ci`.
+- [ ] Confirm final export artifact details (QR scanner payload, VCF import in a contact app, business-card PNG dimensions/legibility).
+- [ ] Record browser/device versions for any cross-browser claims; do not infer untested coverage.
+- [ ] Verify repository-level security settings and required CI checks where access permits.
+- [ ] Obtain green CI on the final documentation PR head.
+- [ ] Complete final user acceptance and decide whether the documented development-only residual risk is acceptable for v1.0.0.
 
-- [ ] Full regression across all nine tools and shared navigation.
-- [ ] Validate actual QR PNG, VCF, and business-card PNG artifacts.
-- [ ] Cross-browser and mobile acceptance with versions recorded.
-- [ ] Keyboard, semantic accessibility, contrast, and responsive review.
-- [ ] Network, storage, DOM-sink, and dependency security review.
-- [ ] Bundle/performance review.
-- [ ] Reproducible install/build and Node.js version documentation.
-- [x] Select Cloudflare Pages and document the static build configuration.
-- [ ] Deploy a preview and verify direct-route/refresh, HTTPS, MIME types, and response headers.
-- [ ] Final release documentation and defect triage.
-- [ ] User final acceptance and green CI.
+## References
 
-Implementation branch: `feature/m6-release-hardening`.  
-Verification checklist: [M6 verification guide](docs/verification/M6-VERIFICATION.md).  
-Deployment guide: [Cloudflare Pages](docs/deployment/CLOUDFLARE-PAGES.md).
+- [M6 verification](docs/verification/M6-VERIFICATION.md)
+- [Dependency audit record](docs/security/DEPENDENCY-AUDIT.md)
+- [Security verification](SECURITY-VERIFICATION.md)
+- [Cloudflare Pages deployment guide](docs/deployment/CLOUDFLARE-PAGES.md)
 
-## Deferred ideas
-
-See [Feature Backlog](docs/backlog/FEATURE-BACKLOG.md). Deferred items do not expand the committed v1.0 scope.
-
-## Workflow
-
-1. Work only within the active milestone branch.
-2. Run focused and full automated checks; inspect the diff.
-3. Open a PR to `main`.
-4. Complete local and manual verification.
-5. Fix issues on the same branch.
-6. Merge only after explicit user acceptance.
+Qraft is not represented as ASVS-certified or fully security-audited.
