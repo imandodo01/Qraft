@@ -1,123 +1,87 @@
 # M6 — Integration and Release Hardening Verification
 
-**Branch:** `feature/m6-release-hardening`  
-**Target:** Qraft v1.0  
-**Status:** In progress
+**Target:** Qraft v1.0.0  
+**Status:** Final acceptance in progress  
+**Evidence updated:** 2026-11-10
 
 This checklist verifies the committed nine-tool release. It does not authorize new tools, backend services, accounts, hosted profiles, or automatic persistence.
 
 ## 1. Baseline and reproducibility
 
-- [ ] Confirm the accepted `main` commit and clean feature-branch base.
-- [ ] Record Node.js and npm versions used locally and in CI.
-- [ ] Run `npm ci` from a clean checkout without lockfile changes.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run typecheck`.
-- [ ] Run `npm test`.
-- [ ] Run `npm run build`.
-- [ ] Record the production bundle output and asset sizes.
-- [ ] Review `npm audit` and `npm audit --omit=dev`; record advisory IDs, dependency paths, reachability, and disposition.
+- [x] `npm ci` completed locally without installation failure.
+- [x] `npm run lint` passed.
+- [x] `npm run typecheck` passed.
+- [x] `npm test` passed — 11 test files, 63 tests.
+- [x] `npm run build` passed.
+- [x] Production bundle output recorded: HTML 0.63 kB (0.37 gzip), CSS 22.13 kB (4.44 gzip), JS 75.15 kB (23.43 gzip).
+- [x] Production-only audit reviewed: 0 vulnerabilities.
+- [x] Full audit reviewed: 7 moderate findings in development dependency path; disposition recorded in `docs/security/DEPENDENCY-AUDIT.md`.
+- [ ] Record exact local Node.js/npm versions and confirm lockfile unchanged after clean install.
+- [ ] Record final CI result on this documentation PR head.
 
-## 2. Full tool regression
+## 2. Nine-tool functional regression
 
-### QR Generator
-- [ ] Generate URL and plain-text QR codes.
-- [ ] Verify empty, malformed URL, Unicode, and capacity-error behavior.
-- [ ] Download PNG and decode it with an independent scanner.
-- [ ] Confirm the decoded payload exactly matches the submitted input.
+- [x] Maintainer reports all nine tools functional on deployed Cloudflare Pages URL.
+- [ ] Archive independent QR scanner result and decoded payload comparison.
+- [ ] Archive VCF import result from a representative contact application.
+- [ ] Archive business-card PNG dimensions (1200 × 675), legibility, and clipping check.
+- [ ] Preserve detailed edge-case/export evidence for each tool if required for release audit.
 
-### vCard Generator
-- [ ] Validate required and optional fields.
-- [ ] Test Unicode, commas, semicolons, backslashes, newlines, and long values.
-- [ ] Download VCF and inspect vCard 3.0 structure, CRLF, escaping, and UTF-8 line folding.
-- [ ] Import VCF into at least one representative contact application.
-- [ ] Confirm the QR encodes the exact serialized VCF payload and handles capacity errors.
-
-### Digital Business Card
-- [ ] Test missing optional fields and long names/job titles/taglines.
-- [ ] Test light/dark themes and accent HEX validation.
-- [ ] Export PNG and verify 1200 × 675 dimensions, legibility, clipping, and colors.
-- [ ] Verify VCF import and QR payload match the same contact details.
-- [ ] Confirm QR capacity fallback does not disable PNG or VCF export.
-
-### Developer and Text Tools
-- [ ] JSON: format, minify, invalid input, nested structures, and Unicode.
-- [ ] Base64: ASCII/Unicode round-trip, empty input, malformed data, invalid UTF-8.
-- [ ] URL: reserved characters, Unicode, malformed percent sequences, and component-vs-full-URL wording.
-- [ ] UUID: UUID v4 version/variant bits and secure-randomness failure behavior.
-- [ ] Text Counter: empty input, Unicode code points, words, CRLF/LF/CR line endings.
-- [ ] Case Converter: all seven modes, punctuation, repeated separators, and Unicode.
-- [ ] Confirm copy, clear, and error paths preserve input appropriately.
+The user-reported functional pass is recorded as manual acceptance evidence; it does not replace the outstanding independent artifact checks above.
 
 ## 3. Cross-cutting interaction and accessibility
 
-- [ ] Test all routes through home cards, search, category filters, direct hash navigation, and browser back/forward.
-- [ ] Test unknown routes and refresh behavior.
-- [ ] Keyboard-only pass: tab order, activation, visible focus, and no keyboard traps.
-- [ ] Inspect semantic landmarks, labels, heading order, button names, and live status announcements.
-- [ ] Check contrast and reduced-motion behavior.
-- [ ] Check widths: 320, 390, 768, 1024, and desktop.
-- [ ] Check zoom/reflow at 200% and 400% where practical.
-- [ ] Record issues and browser/OS versions.
+- [x] Maintainer reports responsive and accessibility checks acceptable in the tested environment.
+- [x] Incognito retest did not reproduce the asynchronous listener console error observed in the normal Chrome profile; extension interference is the likely explanation, not a confirmed root cause.
+- [ ] Record exact browser/OS versions and the viewport widths checked.
+- [ ] Record keyboard-only, semantic, contrast, reduced-motion, and zoom/reflow results individually.
+- [ ] Do not claim Edge, Firefox, or mobile compatibility until each is tested and recorded.
 
-## 4. Browser and export matrix
+## 4. Privacy and security
 
-Record actual versions; do not claim compatibility for browsers not tested.
+- [x] Maintainer reports Network inspection showed no unexpected transmission of user-entered data; PNG generation was the only noted activity during the tested flows.
+- [x] Maintainer reports no unexpected automatic persistence of user-entered data in inspected browser storage.
+- [x] Focused hostile HTML/script payload checks did not execute in the tested QR/vCard flows (previously reported).
+- [x] Cloudflare Pages root response returned HTTP 200 over HTTPS on 2026-11-10.
+- [x] Root response included CSP, HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, and Permissions-Policy.
+- [ ] Verify headers on representative static asset responses, not only the root document.
+- [ ] Verify repository-level security settings and required CI enforcement.
 
-| Browser / device | Version | Navigation & interaction | QR PNG | Business-card PNG | VCF |
-|---|---|---|---|---|---|
-| Chrome desktop | Not tested | [ ] | [ ] | [ ] | [ ] |
-| Edge desktop | Not tested | [ ] | [ ] | [ ] | [ ] |
-| Firefox desktop | Not tested | [ ] | [ ] | [ ] | [ ] |
-| Mobile browser | Not tested | [ ] | [ ] | [ ] | [ ] |
+The checked headers are evidence of configuration enforcement on the root response, not a complete security assessment. This project does not claim ASVS conformance.
 
-For each exported file, verify it opens/imports and its content matches the preview/input. Do not require pixel-identical Canvas output across browsers.
+## 5. Cloudflare Pages deployment
 
-## 5. Privacy and security
+**Deployment:** https://qraft-9y9.pages.dev/
 
-- [ ] Inspect DevTools Network during all nine tools' input, processing, copy, and export flows.
-- [ ] Confirm no user-entered content is sent to application or third-party endpoints.
-- [ ] Inspect localStorage, sessionStorage, IndexedDB, Cache Storage, cookies, and service workers for unexpected user-data persistence.
-- [ ] Review all DOM injection sinks and confirm user-controlled content is rendered safely.
-- [ ] Exercise malformed and hostile input cases without script execution or data loss.
-- [ ] Review URL scheme validation and navigable-link creation.
-- [ ] Review Blob/object URL creation, download names/types, and cleanup.
-- [ ] Re-run dependency audit and document remaining advisories and disposition.
-- [ ] Verify repository security settings and CI check enforcement where access permits.
-- [ ] Verify production HTTPS and response headers (CSP, HSTS, nosniff, Referrer-Policy, Permissions-Policy) on the selected host.
-- [ ] Update `SECURITY-VERIFICATION.md` with evidence; do not claim ASVS conformance.
+- [x] GitHub repository connected to Cloudflare Pages.
+- [x] Build command `npm run build`, output `dist`, root `/`.
+- [x] Cloudflare build completed successfully; supplied build log showed Node.js 24.22.1 and Vite build success.
+- [x] Deployed site opened and all nine tools reported functional by maintainer.
+- [x] HTTPS and configured security headers verified using `curl.exe -I`.
+- [ ] Record direct route/refresh and asset MIME checks if separately required; hash-based routes do not require server-side rewrites.
+- [ ] Verify production branch/automatic deployment behavior on a later reviewed change.
 
-## 6. Static hosting and release documentation
+The earlier `npx wrangler deploy` failure occurred during a separate Workers setup attempt. The successful deployment is Cloudflare Pages; Wrangler deploy is not part of this Pages build workflow.
 
-**Selected provider:** Cloudflare Pages. The repository contains a Pages-compatible static build configuration; this does not mean a Cloudflare account has been connected or a deployment has been made.
-
-- [x] Select and document the intended static hosting provider.
-- [x] Document build command (`npm run build`), output directory (`dist`), and Node.js requirement.
-- [ ] Connect the GitHub repository to a Cloudflare Pages preview deployment.
-- [ ] Verify build output, MIME types, and static asset loading.
-- [ ] Verify home and all tool hash routes, browser back/forward, and refresh on the preview deployment.
-- [ ] Verify HTTPS and response headers, including enforced CSP, on the actual preview origin.
-- [ ] Verify custom domain only if one is configured; do not require it for initial preview.
-- [ ] Document production promotion, rollback/redeploy, and environment requirements.
-- [ ] Update README, CHANGELOG, ROADMAP, and PROJECT_STATUS from verified evidence only.
-
-## 7. Defect triage and release decision
-
-Classify each finding:
-- **Blocker:** data corruption/loss, unsafe execution, privacy breach, broken core workflow, or failed production build.
-- **High:** major tool/export failure, inaccessible core workflow, or deployment/security misconfiguration.
-- **Medium/Low:** non-blocking usability or polish issue; document and decide whether to fix or defer.
+## 6. Defect triage and release decision
 
 - [ ] No unresolved Blocker or High findings.
-- [ ] All accepted v1.0 requirements have evidence.
-- [ ] User has completed final manual acceptance.
-- [ ] CI is green on the final PR head.
-- [ ] Release notes and deployment instructions are accurate.
+- [ ] All accepted v1.0 requirements have evidence or an explicitly accepted limitation.
+- [ ] Project owner explicitly accepts the documented development-only dependency residual risk.
+- [ ] Final user acceptance.
+- [ ] CI green on final PR head.
+- [ ] Release notes and deployment instructions accurate.
+- [ ] Create tag `v1.0.0` and GitHub Release only after the above gates are satisfied.
 
 ## Evidence log
 
 | Date | Environment / version | Check | Result | Evidence / issue |
 |---|---|---|---|---|
-| 2026-11-09 | GitHub repository | M5 PR #8 squash merge | Pass | Merge commit `e82859596cb2af61b969051d8ced3600400a5c46` |
+| 2026-11-09 | GitHub | PR #9 Cloudflare Pages preparation merged | Pass | Merge commit `42db1a748804f9b749229503298d998654680df8` |
+| 2026-11-10 | Local Windows PowerShell | `npm ci`, lint, typecheck, test, build | Pass | 63 tests / 11 files; production build successful |
+| 2026-11-10 | Local Windows PowerShell | `npm audit` | Residual risk | 7 moderate development findings; minimatch path recorded in dependency audit |
+| 2026-11-10 | Local Windows PowerShell | `npm audit --omit=dev` | Pass | 0 vulnerabilities |
+| 2026-11-10 | Cloudflare Pages | Deployment functional check | Pass (maintainer-reported) | https://qraft-9y9.pages.dev/; nine tools reported functional |
+| 2026-11-10 | Cloudflare Pages root response | HTTPS and response headers | Pass | `curl.exe -I` returned HTTP 200 and configured headers |
 
-Automated checks, manual checks, static inspection, and unverified items must be reported separately. A successful build alone is not release acceptance.
+Automated checks, manual checks, static inspection, and unverified items are distinguished above. A successful build alone is not release acceptance.
