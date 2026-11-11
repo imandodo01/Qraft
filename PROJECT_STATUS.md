@@ -1,59 +1,65 @@
 # Qraft — Project Status
 
-**Current release target:** v1.0.0  
-**Completed milestones:** M1 Foundation, M2 QR Studio, M3 Contact Studio, M4 Digital Business Card, M5 Developer and Text Tools  
-**Active work:** M6 Integration and Release Hardening  
-**Active documentation branch:** `docs/m6-final-acceptance`  
-**Static host:** Cloudflare Pages — deployed at https://qraft-9y9.pages.dev/
+**Current release:** [v1.0.0 — Initial Stable Release](https://github.com/imandodo01/Qraft/releases/tag/v1.0.0)  
+**Release date:** 2026-11-10  
+**Production deployment:** https://qraft-9y9.pages.dev/  
+**Development status:** Paused after v1.0.0; no v1.1.0 scope or schedule has been approved.  
+**Source of truth:** `main` and the published GitHub release.
 
-## Accepted baseline
+## v1.0.0 release summary
 
-- Nine-tool v1.0 scope and client-side TypeScript + Vite architecture are established.
-- No account, backend, hosted public profile, or automatic contact-data persistence is required for v1.0.
-- Milestone-based branch, PR, and acceptance workflow is established.
+Qraft is a local-first, browser-based digital toolbox. The initial stable release delivers all nine planned tools:
 
-## Completed milestones
+1. QR Generator.
+2. vCard Generator.
+3. Digital Business Card.
+4. JSON Formatter.
+5. Base64 (UTF-8 text).
+6. URL Encoder (URI components).
+7. UUID Generator (v4).
+8. Text Counter.
+9. Case Converter.
 
-| Milestone | Outcome | Merge |
-|---|---|---|
-| M1 — Application Foundation | Vite, strict TypeScript, ESLint, Vitest, responsive shell, tool registry, search, routing, CI | PR #1 |
-| M2 — QR Studio | Local URL/text QR generation, preview, validation, PNG export, independent scanner verification | PR #4 |
-| M3 — Contact Studio | vCard 3.0 validation/serialization, preview, copy, VCF export, QR contact sharing | PR #5 |
-| M4 — Digital Business Card | Responsive card, themes/accent, 1200 × 675 PNG, VCF, embedded contact QR | PR #7 |
-| M5 — Developer and Text Tools | JSON, UTF-8 Base64, URI component, UUID v4, text counter, case converter | PR #8 |
+The release was published from `main` with tag `v1.0.0`. Release notes and known limitations are recorded on the [GitHub Release page](https://github.com/imandodo01/Qraft/releases/tag/v1.0.0).
 
-## M6 — Release hardening evidence
+## Release verification evidence
 
-| Area | Current result |
+| Area | Result |
 |---|---|
-| Cloudflare Pages deployment | Deployed and accessible at the Pages URL |
-| Nine-tool functional check | User-reported pass |
-| Local clean install | `npm ci` passed |
-| Lint / TypeScript | Both passed locally |
+| GitHub Actions CI on final documentation PR | Passed |
+| Maintainer-reported local clean install | `npm ci` passed |
+| Lint / TypeScript | Passed locally |
 | Automated tests | 63 tests across 11 files passed |
-| Production build | Passed; JS 75.15 KB (23.43 KB gzip), CSS 22.13 KB (4.44 KB gzip) |
-| Production dependency audit | 0 vulnerabilities |
-| Full dependency audit | 7 moderate findings in development dependency path through `typescript-eslint → typescript-estree → minimatch@10.2.6`; disposition recorded as residual risk |
-| HTTPS and response headers | Verified by maintainer using `curl.exe -I` against the deployed Pages URL |
-| Privacy / storage / console | User-reported manual checks passed in tested Chrome session; extension-related console error absent in Incognito |
-| Responsive / accessibility | User-reported manual review acceptable; detailed browser/version matrix not recorded |
+| Production build | Passed |
+| Production dependency audit | 0 findings in `npm audit --omit=dev` |
+| Full dependency audit | 7 moderate development-dependency findings remain; accepted for v1.0.0 |
+| Cloudflare Pages | Deployed and accessible |
+| HTTPS and configured response headers | Verified by maintainer against deployed root response |
+| Nine-tool functional check | Maintainer-reported pass |
+| QR, VCF, and business-card PNG exports | Maintainer-reported manual tests passed |
+| Privacy, responsive, and accessibility checks | Maintainer-reported checks acceptable in tested environment |
 
-The seven moderate audit findings are associated with the same minimatch advisory family, not seven independently established root causes. The vulnerable package is in development tooling; `npm audit --omit=dev` reports zero. An override to minimatch 11.x was not applied because the upstream TypeScript ESLint dependency currently declares `^10.2.2`, and compatibility has not been established. Revisit when upstream publishes a compatible fix. This is not a clean full audit.
+These results distinguish automated CI/local checks from maintainer-reported manual acceptance. They do not establish exhaustive cross-browser coverage or formal security certification.
 
-## Remaining release gates
+## Accepted limitations and follow-up
 
-- [ ] Record the exact local Node.js/npm versions and confirm lockfile unchanged after `npm ci`.
-- [ ] Confirm final export artifact details (QR scanner payload, VCF import in a contact app, business-card PNG dimensions/legibility).
-- [ ] Record browser/device versions for any cross-browser claims; do not infer untested coverage.
-- [ ] Verify repository-level security settings and required CI checks where access permits.
-- [ ] Obtain green CI on the final documentation PR head.
-- [ ] Complete final user acceptance and decide whether the documented development-only residual risk is acceptable for v1.0.0.
+- Seven moderate findings remain in the development dependency path through `typescript-eslint → typescript-estree → minimatch@10.2.6`. They are recorded as an explicitly accepted residual risk for v1.0.0. No forced downgrade or unverified override was applied. Reassess and remediate in a subsequent version when a compatible upstream fix is available.
+- Production-only audit reported zero findings; this does not make the full development dependency audit clean.
+- Branch protection rules have been configured, but enforcement is pending migration to a GitHub Team/Organization account.
+- Exact local Node.js/npm versions and a full cross-browser version matrix were not recorded.
+- Qraft is not represented as ASVS-certified or fully security-audited.
+
+## Development pause
+
+Qraft v1.0.0 is released. Routine feature development is paused so effort can move to other portfolio work.
+
+No v1.1.0 scope, priority order, or delivery date is committed. Future ideas are retained in the [feature backlog](docs/backlog/FEATURE-BACKLOG.md) as candidates only. Before restarting development, review the backlog, reassess dependency/security status, choose a small coherent scope, and create a new release plan.
 
 ## References
 
+- [Published v1.0.0 release](https://github.com/imandodo01/Qraft/releases/tag/v1.0.0)
+- [Feature backlog](docs/backlog/FEATURE-BACKLOG.md)
 - [M6 verification](docs/verification/M6-VERIFICATION.md)
 - [Dependency audit record](docs/security/DEPENDENCY-AUDIT.md)
 - [Security verification](SECURITY-VERIFICATION.md)
 - [Cloudflare Pages deployment guide](docs/deployment/CLOUDFLARE-PAGES.md)
-
-Qraft is not represented as ASVS-certified or fully security-audited.
