@@ -39,6 +39,7 @@ This backlog records useful ideas that are not part of the committed v1.0 scope.
 
 ## General product ideas
 
+- **General XML Editor:** proposed local-first XML workspace for raw editing, tree inspection, well-formedness checks, configurable data extraction to tables, TSV/CSV copy, XLSX export, bulk revision, and compatible document merging. See [General XML Editor plan](../planning/GENERAL-XML-EDITOR-PLAN.md). Candidate only; no implementation scope or release is approved.
 - vCard import/viewer and batch contact export.
 - Email signature generator.
 - Image compression, resizing, and conversion.
@@ -49,7 +50,7 @@ This backlog records useful ideas that are not part of the committed v1.0 scope.
 
 ## Prioritization
 
-When development resumes, evaluate candidates by user value, implementation cost, maintenance burden, privacy implications, and whether they improve the core local-first toolbox. Do not assume the order in which ideas appear here represents priority. Do not expand the nine-tool v1.0 commitment without an explicit scope decision.
+When development resumes, evaluate candidates by user value, implementation cost, maintenance burden, privacy implications, and whether they improve the core local-first toolbox. Do not assume the order in which ideas appear represents priority. Do not expand the nine-tool v1.0 commitment without an explicit scope decision.
 
 ## Release and security follow-up
 
