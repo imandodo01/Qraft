@@ -83,6 +83,10 @@ Build settings: `npm run build`, output directory `dist`, root directory `/`. Th
 - [Milestone verification guides](docs/verification/)
 - [Changelog](CHANGELOG.md)
 
+## License
+
+Qraft is licensed under the [MIT License](LICENSE). The license applies to the original project code and documentation unless otherwise noted. Third-party dependencies and assets remain subject to their respective licenses and terms.
+
 ## Definition of done for v1.0
 
 Qraft v1.0 is ready when all nine committed tools pass functional and export acceptance, the application is responsive and accessible, privacy and applicable security checks are evidenced, the production build is reproducible, static deployment is verified, and final user acceptance is complete.
